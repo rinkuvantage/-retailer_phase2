@@ -1,0 +1,110 @@
+/* CSS Document */
+ footer.text-center{  z-index: 99999999999 !important; margin-top:20px;}
+.ftrbox {
+    background: #000;
+    float: left;
+    width: 100%;
+}
+.ftrmid {
+    margin: 0 auto;
+    float: none !important;
+    display: inline-block;
+    padding: 20px 0px 5px 30px;
+}
+footer {
+    color: #fff;
+}
+.f_leftbox {
+    text-align: left;
+}
+.f_rightbox {
+    text-align: right;
+}
+.f_rightbox li {
+    list-style: none;
+    display: inline;
+}
+.f_rightbox li a {
+    color: #fff;
+    margin-right:43px;
+}
+.nav>li>a>img {
+    max-width: 80% !important;
+}
+p.social-buttons a {
+    margin-right: 10px;
+}
+footer .footer-above {
+  background: #d05125 !important;
+
+}
+footer .footer-above {
+
+  padding-top: 50px;
+  }
+footer.text-center {
+  overflow:hidden;
+}
+footer .footer-col {
+  margin-bottom: 20px;
+}
+.ftrblock {
+  text-align: left;
+}
+.ftrblock h4 {
+  font-weight: normal;
+  text-transform:uppercase;
+  font-weight:600;
+}
+.ftrblock ul.footer-list {
+  list-style: outside none none;
+  padding: 0;
+}
+.ftrblock ul.footer-list li {
+  margin-bottom: 10px;
+}
+.ftrblock ul.footer-list a {
+  color: #fff;
+}
+address{ color:#fff;}
+.ftrblock h4 {
+  color: #fff;
+}
+.footer-list .btn.btn-info.btn-lg.anchortext.forgotpwdlink {
+  border-radius: 0;
+}
+.footer-list button.btn.btn-info.btn-lg.anchortext.forgotpwdlink {
+  background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+  border: medium none;
+  color: #000;
+  margin: 0;
+  padding: 0 !important;
+  text-align: left;
+}
+.footer-list button.btn.btn-info.btn-lg.anchortext.forgotpwdlink.supportbox {
+  border: medium none;
+  color: #fff;
+  font-size: 16px;
+  font-weight: normal;
+}
+.scroll-top.page-scroll.visible-xs.visible-sm {
+  position: absolute;
+  bottom:0px;
+}
+footer{ position:relative;}
+.scroll-top.page-scroll.visible-xs.visible-sm {
+  right: 0px;
+}
+.requestdemo .modal-hero {
+  background: #f2f5f8 none repeat scroll 0 0;
+  border-bottom: 1px solid #d1dce6;
+  border-radius: 3px 3px 0 0;
+  padding: 30px;
+}
+.navbar-right{ right:0px !important;}
+
+.modal{z-index:9999999999!important;}
+#myModal1 .modal-dialog, #myModal2 .modal-dialog {
+    max-width: 830px !important;
+    width: 95% !important;
+}

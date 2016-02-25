@@ -1,0 +1,417 @@
+@charset "utf-8";
+/* CSS Document */
+h1, h2, h3, h4, h5, h6 {
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 700;
+}
+.removemarginbox{ margin-top:0px;}
+.h3.no-border, h3.no-border {
+    border: none;
+    padding-top: .1em;
+}
+.h3, h3 {
+    font-size: 1.5625em;
+    line-height: 1.2em;
+    border-top: 10px solid #eceaea;
+    padding-top: .8em;
+    margin-bottom: .8em;
+}
+.box-half {
+    width: 48.2%;
+    float: left;
+}
+.button-red:focus, .button-red:hover {
+ background:#000; 
+}
+.button-red {
+    background: #cc5129;
+    padding: 10px;
+    color: #fff !important;
+    margin-top: 20px !important;
+    float: left;
+}
+.box-half+.box-half {
+    float: right;
+}
+.tabcontents h3{
+    font-weight: normal;
+    font-size: 20px;
+    text-transform: capitalize;
+}
+.inclusions_ul li a {
+    padding: 15px 10px;
+    border: 1px solid #eee;
+    border-top: 5px solid #eee;
+	font-size:18px;
+	color:#000;
+}
+.pricing_content p {
+    font-size: 16px;
+    color: #2c3e50;
+}
+ul.tabs {
+    padding: 7px 0;
+    font-size: 0;
+    margin: 0;
+    list-style-type: none;
+    width: 21%;
+    float: left;
+    text-align: left;
+    border: 1px solid #eee;
+	border-right:none;
+}
+        
+ul.tabs li
+{
+    display: inline;
+    margin: 0;
+}
+        
+ul.tabs li a {
+  font: 12px Verdana;
+  padding: 20px 18px;
+  position: relative;
+  text-decoration: none;
+}
+        
+ul.tabs li a:visited
+{
+    color: #000;
+}
+        
+ul.tabs li a:hover
+{
+
+    background:#eee;
+}
+        
+ul.tabs li.selected a, ul.tabs li.selected a:hover {
+  background: #eee;
+  position: relative;
+  top: 0;
+}
+        
+        
+ul.tabs li.selected a:hover
+{
+    text-decoration: none;
+}
+     
+
+div.tabcontents {
+    background-color: #fff;
+    border-radius: 0 3px 3px;
+    padding: 30px 20px;
+    width: 78%;
+    float: left;
+	padding-top:0px;
+}
+.pricing_box {
+  margin: 0 auto;
+  padding: 20px 0 40px;
+}
+.pricing_box .tabs a {
+    background: #fff;
+    border-right: 1px solid #cecaca !important;
+    color: #000 !important;
+    font-family: Calibri !important;
+    font-size: 16px !important;
+    width: 100%;
+    float: left;
+	border-bottom:1px solid #eee;
+}
+.pricing_box .tabcontents h1 {
+    border-bottom: 1px solid #e9e6e6;
+    color: #000;
+    font-family: calibri;
+    font-size: 23px;
+    font-weight: normal;
+    margin: 0;
+    padding-bottom: 10px;
+    font-weight: bold;
+}
+.pricing_box img {
+    margin: 20px 0px;
+}
+.pricing_content {
+  box-sizing: border-box;
+  float: left;
+  margin-top: 10px !important;
+  padding-bottom: 30px;
+  width: 100%;
+}
+.pricing_img_box {
+  border: 2px solid #a9a7a7;
+  float: left;
+  height: 128px;
+  width: 180px;
+}
+.clr{ clear:both; margin:0px; padding:0px;}
+.pricing_mid_box {
+  float: left;
+  margin-left: 20px;
+  width: 353px;
+}
+.pricing_mid_box h2 {
+  color: #00c0ff;
+  font-family: calibri;
+  font-size: 19px;
+  font-weight: normal;
+  margin: 0;
+}
+.pricing_mid_box h2 span {
+  color: #f33e15;
+  font-family: calibri;
+}
+.pricing_mid_box p {
+  color: #474747;
+  font-family: Century Gothic;
+  font-size: 13px;
+  line-height: 22px;
+}
+.right_price_box {
+  background: none repeat scroll 0 0 #f33e15 !important;
+  box-sizing: border-box;
+  float: right;
+  height: 134px;
+  margin-left: 11px;
+  padding:15px 11px;
+  width: 127px;
+}
+.right_price_box h4 {
+  color: #fff;
+  font-family: calibri;
+  font-size: 23px;
+  font-weight: normal;
+  text-align: center;
+  margin:0px;
+}
+.right_price_box p {
+  color: #fff;
+  font-family: Century Gothic;
+  font-size: 16px;
+  margin-bottom: 13px;
+  margin-top: 6px;
+  text-align: center;
+}
+.right_price_box button {
+  background: none repeat scroll 0 0 #00c0ff;
+  border: 1px solid #fff;
+  color: #fff;
+  font-family: calibri;
+  font-size: 16px;
+  padding: 4px 7px;
+  cursor:pointer;
+}
+#view2 .pricing_mid_box {
+  float: left;
+  margin-left: 20px;
+  width: 70%;
+}
+.pricing_main_box p {
+  float: left;
+  font-family: century gothic;
+  font-size: 13px;
+  text-align: center;
+  width: 100%;
+}
+.pricing_main_box span {
+  color: #f33e15;
+}
+.pricing_main_box {
+  float: left;
+  width: 184px;
+}
+#view2 .pricing_content {
+  padding-bottom: 8px;
+
+}
+.inclusions_top_menu {
+    margin-top: 17px;
+    min-height: 38px;
+    border-bottom: 1px solid #eee;
+}
+.inclusions_ul {
+  margin: 0;
+  padding: 0;
+}
+.inclusions_ul a {
+  color: #000;
+  font-family: century gothic;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.inclusions_ul li {
+  display: inline;
+  list-style: outside none none;
+}
+.in_active {
+    color: #000 !important;
+    background: #fff;
+    border-top: 4px solid #cc5129!important;
+    border-bottom: none !important;
+}
+.inclusions_sidebar {
+  border: 1px solid #00c0ff;
+  box-sizing: border-box;
+  float: left;
+  min-height: 200px;
+  padding: 10px 11px;
+  width: 24%;
+}
+.inclusions_sidebar ul {
+  list-style: outside none none;
+  padding: 0;
+  margin: 0px;
+}
+.inclusions_sidebar li {
+  border-bottom: 1px dotted #b2b2b2;
+  line-height: 34px;
+}
+.inclusions_sidebar a {
+  color: #000;
+  font-family: century gothic;
+  font-size: 13px;
+  text-decoration: none;
+}
+.active_sidebar{ color:#00c0ff !important;}
+.inclusion_right_box {
+  float: left;
+  width: 76%;
+  padding-left: 25px;
+  box-sizing: border-box;
+}
+.inclusion_right_box h4 {
+  font-family: century gothic;
+  font-size: 13px;
+  font-weight: bold;
+  margin: 0;
+}
+.inclusion_right_box h5 {
+  background: none repeat scroll 0 0 #cbcbcb;
+  font-family: century gothic;
+  font-weight: normal;
+  margin: 11px 0 17px;
+  padding: 5px 10px;
+}
+#view3 .pricing_mid_box {
+  float: left;
+  margin-left: 24px;
+  width: 59%;
+}
+.tiltle_box {
+  background: none repeat scroll 0 0 #cbcbcb;
+  float: left;
+  font-family: Century Gothic;
+  font-size: 13px;
+box-sizing:border-box;
+  width: 100%;
+}
+.title_block {
+  float: left;
+  width: 25%;
+    padding: 5px 10px;
+	box-sizing:border-box;
+}
+.title_block.a_block4 {
+  float: right;
+  width: 17%;
+}
+.title_block.a_block1 {
+  width: 36%;
+}
+.title_block.a_block2 {
+  width: 14%;
+}
+.title_block.a_block3 {
+  width: 33%;
+}
+.title_block.a_block3 {
+  width: 33%;
+}
+.tiltle_box.tiltle_box1 {
+  background: none repeat scroll 0 0 #fff;
+  border-bottom: 1px solid #e9e6e6;
+  line-height: 32px;
+  vertical-align: middle;
+}
+.accomodation_content {
+  border: 1px solid #cbcbcb;
+  float: left;
+  margin-top: 25px;
+  width: 100%;
+}
+.title_block.a_block1 > a {
+  color: #00c0ff;
+  text-decoration: none;
+}
+#view5 .pricing_mid_box {
+  float: left;
+  margin-left: 20px;
+  width: 70%;
+}
+#view5 .pricing_content {
+  padding-bottom: 25px;
+
+}
+#view3 .pricing_content{ border-bottom:none;}
+
+/*22 may css start here*/
+
+.pricing_content1 {
+  box-sizing: border-box;
+  float: left;
+  margin-top: 30px;
+  padding-bottom: 30px;
+  width: 100%;
+
+}
+.package_doesnot_include{ width:100%; height:auto;}
+.package_doesnot_include > ul {
+  padding-left: 0px;
+}
+.package_doesnot_include li {
+  background: rgba(0, 0, 0, 0) url("http://www.travelohut.com/wp-content/uploads/2015/05/arrow.png") no-repeat scroll left top 9px;
+  font-family: century gothic;
+  font-size: 13px;
+  line-height: 25px;
+  list-style: outside none none;
+  padding-left: 17px;
+}
+.meal{ 
+    color: #474747;
+    font-family: Century Gothic;
+    font-size: 13px;
+    line-height: 22px;
+}
+.other{ 
+    color: #474747;
+    font-family: Century Gothic;
+    font-size: 13px;
+    line-height: 22px;
+}
+.airfare{ 
+    color: #474747;
+    font-family: Century Gothic;
+    font-size: 13px;
+    line-height: 22px;
+}
+.inclusion_right_box {
+
+  float: right;
+
+}
+.pricing_content3 {
+  box-sizing: border-box;
+  float: left;
+  margin-top: 30px;
+  padding-bottom: 30px;
+  width: 100%;
+}
+
+.pricing_mid_box p {
+    display: inline;
+    margin: 0;
+    width: auto;
+}

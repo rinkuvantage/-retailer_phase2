@@ -1,0 +1,135 @@
+.mainregisterbox .digittext {
+    color: #737373;
+    font-size: 18px;
+    margin-top: 10px;
+    float: left;
+}
+.mainregisterbox .form-box-footer.form-header input.btn.btn-block {
+    background: #C64019 !important;
+    color: #fff !important;
+    border: 1px solid #b92c28;
+
+}
+.mainregisterbox .form-box-footer.form-header a {
+    color: #d05125;
+}
+.mainregisterbox .form-box-footer.form-header p {
+    color: #737373;
+    font-size: 13px;
+    margin-top: 10px;
+    float: left;
+    text-transform: uppercase;
+}
+.mainregisterbox .form-box-footer.form-header {
+    padding: 29px 40px;
+    text-align: center;
+	border-bottom:1px solid #ccc !important;
+}
+.mainregisterbox .login_form form.form-signin{ padding:0px;}
+.mainregisterbox .rg_top_section {
+    box-sizing: border-box;
+    margin: 0 auto;
+    max-width: 100%;
+    padding: 33px;
+    display: inline-block;
+    width: 100%;
+    padding-bottom: 10px;
+}
+.reg_box.fullreg {
+    width: 98% !important;
+}
+.mainregisterbox .form-header {
+    background-color: #f8f9fa;
+    font-size: 27px;
+}
+.mainregisterbox .sr-only {
+    position: unset !important;
+    width: auto;
+    height: auto;
+    margin: 0px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+    color: #000;
+    font-weight: normal !important;
+    font-size: 18px;
+    float: left;
+    margin-bottom: 10px;
+}
+.mainregisterbox .login_form input{
+    display: block;
+    width: 100%;
+    height: 39px;
+    padding: 6px 12px;
+    font-size: 18px;
+    line-height: 1.42857;
+    color: #000 !important;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+	min-height:35px;
+	padding-left:40px;
+	}
+.mainregisterbox .login_form {
+    margin: 0 auto 100px auto;
+    border: 1px solid #ccc;
+    background: #fff;
+    position: relative;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+	padding:0px;
+}
+
+.glyphicon-user:before {
+    content: "\e008";
+}
+i.fa.fa-phone.pno {
+    font-size: 20px;
+    line-height: 42px;
+}
+.inputiconbox {
+    float: left;
+    width: 100%;
+    position: relative;
+}
+.glyphicon, .pno{
+    position: absolute !important;
+    height: 37px;
+    line-height: 37px !important;
+    padding-left: 10px;
+    color: #a2adc0;
+    font-size: 18px;
+}
+.adm_profileedit .login_form{ float:none; margin:0 auto;}
+.reg_box.lstbox {
+    margin-right: 0px;
+}
+.success {
+    background: #333333;
+    color: #fff;
+    padding: 5px;
+    position: absolute;
+    text-align: center;
+    top: 168px;
+    width: 100%;
+    z-index: 999;
+}
+/*.admindashboard .success {
+    top: 61px !important;
+    width: 83% !important;
+}*/
+
+.admindashboard .success {
+    /* margin-left: 30px !important; */
+    top: 169px !important;
+    width: 100% !important;
+    left: 0px !important;
+}
+.admprofileedit {
+    float: none;
+    margin: 0 auto;
+}
