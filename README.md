@@ -96,4 +96,13 @@ make changes in createuser.php and register.php
 
 => Added functionality on dashboard manage user if any user account will be deleted from dashboard then it will also be automatically deleted from mantis.
 
+#Update 1 March, 2016
+
+=> Allow auto login of mantis user from comon website login
+
+#Update 2 March, 2016
+
+=> Added features in dashboard for super admin/company to add different email template for their own customers.
+=> Super admin/Company has write to create own email template and can preview it or send sample emails.
+=> Added additional table as "templates" which holds email template data.
 
