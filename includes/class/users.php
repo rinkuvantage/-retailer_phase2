@@ -24,6 +24,8 @@ if ( !class_exists( 'Users' ) ) {
 				$_SESSION["User_type"] = $row["user_type"];
 				$_SESSION["User_key"] = $row["keyid"];
 				$_SESSION["User_token"] = $row["tokenid"];
+				$_SESSION["User_mail"] = $row["user_email"];
+				$_SESSION["User_company"] = $row["company"];
 				
 				if($rememberme) {
 					setcookie("ret_usrname", $usrname, time()+ (3600*24*365) );
@@ -601,12 +603,56 @@ if ( !class_exists( 'Users' ) ) {
 		function add_user_mantis($mantis)
 		{
 			global $prefix;
-			$sql="INSERT INTO `mantis_user_table` (`username`, `realname`,`email`,`password`,`enabled`,`date_created`,`access_level`) VALUES ('".$mantis['username']."', '".$mantis['realname']."', '".$mantis['email']."', '".$mantis['password']."', '".$mantis['enabled']."', '".$mantis['datecreated']."', '".$mantis['access_level']."')";
+			
+			
+			$t_cookie_string = getRandomString(64);
+						
+			
+			$sql="INSERT INTO `mantis_user_table` (`username`, `realname`,`email`,`password`,`enabled`,`date_created`,`access_level`, `cookie_string`) VALUES ('".$mantis['username']."', '".$mantis['realname']."', '".$mantis['email']."', '".md5($mantis['password'])."', '".$mantis['enabled']."', '".$mantis['datecreated']."', '".$mantis['access_level']."', '".$t_cookie_string."')";
 			$result = mysql_query( $sql );
 		}
 		
 		
+		
+		
+		
+		function mantisLogin($email)
+		{
+			global $prefix;
+			$strSQL ="select * from `mantis_user_table` WHERE lower(email) = '$email' and `enabled` = '1'"; 
+			$result = mysql_query($strSQL);
+			if(!$result)
+			{
+				return 0;
+			}
+			else
+			{
+				$row = mysql_fetch_assoc($result);	
+				$string_cookies = $row['cookie_string'];		
+				
+					setcookie("MANTIS_STRING_COOKIE", $string_cookies, time()+ (3600*24*365) );
+					setcookie("MANTIS_secure_session", 0, time()+ (3600*24*365) );					
+					return mysql_num_rows($result);
+			}
+		}
 	}
+	
+	
+
+function getRandomString($length = 64) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $string = '';
+
+    for ($i = 0; $i < $length; $i++) {
+        $string .= $characters[mt_rand(0, strlen($characters) - 1)];
+    }
+
+    return $string;
+}
+
+
+
+
 	global $user;
 
 	$user = new Users();

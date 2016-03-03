@@ -178,6 +178,10 @@ if(isset($_POST['signupSubmit']))
 							  <input type="email" id="email" name="email" value="<?php echo $email; ?>" class="form-control required email" placeholder="" required="required"  />
 							  </div>
 							  </div>
+                              
+                               <div class="reg_box fullreg alignleft"><h2>Password</h2>
+                               	<p>Fill this section only if you wish to change your current password</p>
+                               </div>
 							  <div class="reg_box fullreg">
 							  <label for="inputPassword" class="sr-only">Password</label>
 							  <div class="inputiconbox">
@@ -185,7 +189,20 @@ if(isset($_POST['signupSubmit']))
 							  <input type="password" id="pwd" name="pwd" class="form-control" placeholder="Password" autocomplete="off" />
 							  </div>
 							  </div>
-						 </div>
+                              
+                              <!--<div class="reg_box fullreg">
+							  <label for="inputconfirmPassword" class="sr-only">Confirm Password</label>
+							  <div class="inputiconbox">
+							  <span class="glyphicon glyphicon-lock"></span>
+							  <input type="password" id="conpwd" name="conpwd" class="form-control" placeholder="Confirm Password" autocomplete="off" />
+							  </div>
+							  </div>-->
+                              
+                              <!--<div class="reg_box fullreg alignleft"><h2>Two-factor authentication</h2>
+                               	<p>Enhance the security of your account by enabling two-factor authentication. After enabling this feature, you will receive a special code via text message or smartphone app in order to complete your logins.</p>
+                                <p><a href="./set-two-factor-auth.php?user_id=<?php //echo $_GET['user_id']; ?>">Enable two-factor authentication</a></p>
+                               </div>
+						 </div>-->
 							
 						<div class="reg_box tokensection edituserbox">
 								<label for="inputEmail" class="sr-only">Reset Token/Key</label>

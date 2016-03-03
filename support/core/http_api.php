@@ -133,7 +133,7 @@ function http_content_headers() {
  */
 function http_security_headers() {
 	if ( !headers_sent() ) {
-		header( 'X-Frame-Options: DENY' );
+		//header( 'X-Frame-Options: DENY' );
 		$t_avatar_img_allow = '';
 		if ( config_get_global( 'show_avatar' ) ) {
 			if ( http_is_protocol_https() ) {

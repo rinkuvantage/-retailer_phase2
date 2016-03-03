@@ -73,7 +73,9 @@ if(count($currentpagesss)>1){$currentpage=$currentpagesss[0];}
         <li> <a href="analytics.php"><i class="fa fa-fw fa-bar-chart"></i> Analytics</a> </li>
 		 <li class="divider"></li>
 		 <?php if($user_type=='admin' || $user_type=='supadmin'){ ?>
-      <li> <a href="manageusers.php"><i class="fa fa-fw fa-user"></i> Manage Users</a> </li>
+         <li><a href="email-templates.php"><i class="fa fa-fw fa-envelope"></i>Email Templates</a> </li>
+         <li class="divider"></li>
+      	<li> <a href="manageusers.php"><i class="fa fa-fw fa-user"></i> Manage Users</a> </li>
 	   <li class="divider"></li>
       <?php } ?>
 		 <li> <a href="logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a> </li>
@@ -111,7 +113,11 @@ if(count($currentpagesss)>1){$currentpage=$currentpagesss[0];}
 	  <li<?php if($currentpage=='analytics.php'){ ?> class="active"<?php } ?>> <a href="analytics.php">Analytics</a> </li>
      
       <?php if($user_type=='admin' || $user_type=='supadmin'){ ?>
+     <li<?php if($currentpage=='email-templates.php' || $currentpage=='email-template.php'){ ?> class="active"<?php } ?>> <a href="email-templates.php">Email Templates</a> </li> 
+      
       <li<?php if($currentpage=='manageusers.php' || $currentpage=='edit-user.php'){ ?> class="active"<?php } ?>> <a href="manageusers.php">Manage Users</a> </li>
+      
+      
       <?php } ?>
 	 
     </ul>

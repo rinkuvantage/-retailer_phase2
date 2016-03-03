@@ -108,7 +108,7 @@ if(isset($_POST['fname']))
 			}
 			
 			$mantis['email'] = $post['user_email'];
-			$mantis['password'] = $post['user_pass'];
+			$mantis['password'] = $_POST['pwd'];
 			$mantis['username'] = strtolower(trim($post['fname']));
 			$mantis['realname'] = trim($post['fname']) . " ".trim($post['lname']);
 			$mantis['enabled'] = 1;

@@ -109,135 +109,17 @@ if(isset($_POST['sendmsg']))
 }
 
  ?>
-<!-- Header -->
-<!-- Portfolio Grid Section -->
+
 
 <div id="page-wrapper">
 
             <div class="container-fluid supportpage">
-			<!--<div class="row">
-                    <div class="col-lg-12">
-                     
-                        <ol class="breadcrumb">
-                            
-                            <li class="active">
-                                <i class="fa fa-fw fa-user"></i> Support
-                            </li>
-                        </ol>
-                    </div>
-                </div>-->
-
-  <div class="innerpage mainregisterbox suptboxsection col-md-10">
-  <div class="form-header">Sigmaways Retail Analytics Support</div>
-	  <form id="support-form" name="support-form" method="post" action="">
-	  <div class="rg_top_section">
-		<?php if(!empty($errors)){foreach($errors as $error){echo '<span class="error">'.$error.'</span><br />';}} ?>
-        
-          <div class="form-group">
-            <label>Name*</label>
-            <div class="controls">
-			<div class="inputiconbox">
-			<span class="glyphicon glyphicon-user"></span>
-              <input name="name" type="text" value="<?php echo $name; ?>" placeholder="Your name" class="form-control required">
-            </div>
+			
+                  <div class="innerpage mainregisterbox suptboxsection col-md-10">
+                  <div class="form-header">Sigmaways Retail Analytics Support</div>
+                      <iframe src="http://localhost/retailernew/support/my_view_page.php" width="100%" height="500px"></iframe> 
+                    
+                  </div>
 			</div>
-          </div>
-          <div class="form-group">
-            <label>Email*</label>
-            <div class="controls">
-			  <div class="inputiconbox">
-							  <span class="glyphicon glyphicon-envelope"></span>
-              <input name="email" type="text" value="<?php echo $email; ?>" placeholder="Your email address" class="form-control required email">
-			  </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Website</label>
-            <div class="controls">
-			<div class="inputiconbox">
-			<i class="fa fa-globe"></i>
-              <input name="website" type="text" value="<?php echo $website; ?>" placeholder="Your website (if relevant)" class="form-control url" data-optional="true">
-            </div>
-			</div>
-          </div>
-          <div class="form-group">
-            <label>Message*</label>
-            <div class="controls">
-			<div class="inputiconbox">
-		<i class="fa fa-pencil"></i>
-              <textarea name="message" placeholder="Your message..." style="height: 210px" class="form-control required"><?php echo $message; ?></textarea>
-            </div>
-			</div>
-          </div>
-		  <div class="form-group">
-            <label><img src="<?php require_once('capcha/captchaimage.php'); ?>" class="captchaimg" alt="Catcha" /><a href="javascript:;" class="reloadimg"><img src="img/reload_icon.gif" alt="reload" /></a></label>
-            <div class="controls">
-              <input name="captchacode" id="captchacode" type="text" value="" class="form-control required">
-            </div>
-          </div>
-        	  </div>
-     
-	  <div class="form-box-footer form-header">
-							 <input class="btn btn-info" type="submit" id="requestsupport" name="sendmsg" value="Submit Request" />
-						   
-						
-	  </div>
-	  </form>
-    
-  </div>
-</div>
-</div>
-</div>
-<script src="js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
-	<script type="text/javascript" src="js/validate.js"></script>
-	<script type="text/javascript">
-	jQuery(document).ready(function(){
-		jQuery('a.reloadimg').click(function(){
-			jQuery.ajax({
-			  url: "capcha/captchaimage.php"
-			})
-			  .done(function( data ) {
-				jQuery('img.captchaimg').attr('src',data);
-			  });
-		});
-		
-		jQuery.validator.addMethod("noSpace", function(value, element) { 
-		  return value.indexOf(" ") < 0 && value != ""; 
-		}, "No space please and don't leave it empty");
-		
-		jQuery.validator.addMethod("onlytext",function(value,element)
-		{
-			return this.optional(element) || /^[a-zA-Z ]+$/i.test(value); 
-		},"Please enter only letter.");
-		jQuery.validator.addMethod("validemail",function(value,element)
-		{
-			return this.optional(element) || /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/i.test(value); 
-		},"Please enter valid email.");
-		jQuery.validator.addMethod("textnumber",function(value,element)
-		{
-			return this.optional(element) || /^[a-zA-Z][a-zA-Z0-9 ]+$/i.test(value); 
-		},"Please enter only letter and number.");
-		jQuery.validator.addMethod("textnumberdash",function(value,element)
-		{
-			return this.optional(element) || /^[a-zA-Z0-9,. ]+$/i.test(value); 
-		},"Special characters are not allowed");
-		
-		jQuery.validator.addMethod("noSpace", function(value, element) { 
-		  return value.indexOf(" ") < 0 && value != ""; 
-		}, "No space please and don't leave it empty");
-		
-		jQuery('#support-form').validate({
-			rules: {
-				name: {
-					onlytext: true
-				}
-			}
-		});
-	});
-	</script>
-<!-- Footer -->
+	</div>
 <?php require_once('footer.php'); ?>

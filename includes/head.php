@@ -32,6 +32,7 @@ $fileextension=array('.txt','.rtf','.csv','.xlsx','.tar','.gz', '.tar.gz', '.zip
 
 
 require_once('class/users.php');
+require_once('class/templates.php');
 
 $ip=$user->getRealIpAddr();
 $data=$user->ip_info($ip, "country_code");
@@ -58,7 +59,9 @@ if(isset($_SESSION["User_id"]) && isset($_SESSION["User_type"])){
 	$login_active=true;
 	$user_type=$_SESSION["User_type"];
 	$uid=$_SESSION["User_id"];
-	$skey=$_SESSION["User_key"];
+	$skey=$_SESSION["User_key"];	
+	$account_log_email = $_SESSION["User_mail"];
+	$account_company = $_SESSION["User_company"];
 }
 if(isset($_REQUEST['activateaccount']) && isset($_REQUEST['email']))
 {

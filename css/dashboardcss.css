@@ -70,6 +70,7 @@ label.error {
 }
 .editusersectionblock .inputiconbox{ text-align:left;}
 .editusersectionblock{ text-align:center;}
+.alignleft{ text-align:left;}
 .innerpage.mainregisterbox .editusersectionblock .admprofileedit{ display:inline-block;}
 #support-form .inputiconbox i {
     position: absolute;

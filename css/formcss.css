@@ -133,3 +133,59 @@ i.fa.fa-phone.pno {
     float: none;
     margin: 0 auto;
 }
+
+.checkbx input[type="checkbox"]{ float:left; width:20px;height:auto; min-height:0px;}
+.alignleft h3{ padding-bottom:10px; border-bottom:1px solid #ccc; width:98%;}
+
+.alignleft .btn-default {
+    background-color: #fff;
+    border-color: #ccc;
+    color: #333;
+}
+
+.alignleft .btn-default:hover {
+    background-color: #e6e6e6;
+    border-color: #adadad;
+    color: #333;
+}
+.alignleft .btn {
+    -moz-user-select: none;
+    background-image: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857;
+    margin-bottom: 0;
+    padding: 6px 12px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.template_save{ width:230px!important; float:left; margin-right:30px;}
+.template_preview{ width:230px!important; float:left;}
+
+#myModal21 .modal-body p{font-size:14px;}
+#myModal21 .subtitle p{font-size:14px; margin-bottom:0px;}
+#myModal21 .subtitle{background: #fafdff; padding: 10px 20px;  font-size: 12px; border: 1px solid #e3e3e3;}
+#myModal21 .inputblock input {
+    border: 1px solid #ccc;
+    padding: 4px;
+    padding-left: 10px;
+}
+#myModal21 .smitbox {
+    background: #C64019;
+    border: 1px solid #b92c28;
+    box-shadow: 0 1px 1px -1px rgba(255, 255, 255, 1) inset;
+    color: #e6e6e6;
+    font-size: 18px;
+    margin-bottom: 10px;
+    padding: 2px 10px !important;
+    text-shadow: 0 0 0;
+    padding-bottom: 4px !important;
+    border: none !important;
+    margin: 0px !important;
+}
+.msgsuccess{ color:#063; font-weight:bold;}

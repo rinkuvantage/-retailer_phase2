@@ -36,6 +36,8 @@ if(isset($_POST['login']))
 		$check=$user->checkUserLogin($email, $password, $rememberme);
 		if($check>0)
 		{
+			$user->mantisLogin(strtolower($email));
+			
 			echo'Done';
 		}
 		else
