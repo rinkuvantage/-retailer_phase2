@@ -184,16 +184,16 @@ function html_page_top1( $p_page_title = null ) {
 		echo "\t", '<meta name="robots" content="', $g_robots_meta, '" />', "\n";
 	}
 
-	html_rss_link();
+	//html_rss_link();
 
 	$t_favicon_image = config_get( 'favicon_image' );
 	if( !is_blank( $t_favicon_image ) ) {
-		echo "\t", '<link rel="shortcut icon" href="', helper_mantis_url( $t_favicon_image ), '" type="image/x-icon" />', "\n";
+		//echo "\t", '<link rel="shortcut icon" href="', helper_mantis_url( $t_favicon_image ), '" type="image/x-icon" />', "\n";
 	}
 
 	// Advertise the availability of the browser search plug-ins.
-	echo "\t", '<link rel="search" type="application/opensearchdescription+xml" title="MantisBT: Text Search" href="' . string_sanitize_url( 'browser_search_plugin.php?type=text', true) . '" />';
-	echo "\t", '<link rel="search" type="application/opensearchdescription+xml" title="MantisBT: Issue Id" href="' . string_sanitize_url( 'browser_search_plugin.php?type=id', true) . '" />';
+	//echo "\t", '<link rel="search" type="application/opensearchdescription+xml" title="MantisBT: Text Search" href="' . string_sanitize_url( 'browser_search_plugin.php?type=text', true) . '" />';
+	//echo "\t", '<link rel="search" type="application/opensearchdescription+xml" title="MantisBT: Issue Id" href="' . string_sanitize_url( 'browser_search_plugin.php?type=id', true) . '" />';
 
 	html_title( $p_page_title );
 	html_head_javascript();
@@ -494,6 +494,7 @@ function html_login_info() {
 	$t_now = date( config_get( 'complete_date_format' ) );
 	$t_realname = current_user_get_field( 'realname' );
 
+	/*
 	echo '<table class="hide">';
 	echo '<tr>';
 	echo '<td class="login-info-left">';
@@ -576,6 +577,8 @@ function html_login_info() {
 	echo '</td>';
 	echo '</tr>';
 	echo '</table>';
+	
+	*/
 }
 
 /**
@@ -783,7 +786,7 @@ function print_menu() {
 
 		# Changelog Page
 		if( access_has_project_level( config_get( 'view_changelog_threshold' ) ) ) {
-			$t_menu_options[] = '<a href="' . helper_mantis_url( 'changelog_page.php">' ) . lang_get( 'changelog_link' ) . '</a>';
+			//$t_menu_options[] = '<a href="' . helper_mantis_url( 'changelog_page.php">' ) . lang_get( 'changelog_link' ) . '</a>';
 		}
 
 		# Roadmap Page
@@ -798,12 +801,12 @@ function print_menu() {
 
 		# Project Documentation Page
 		if( ON == config_get( 'enable_project_documentation' ) ) {
-			$t_menu_options[] = '<a href="' . helper_mantis_url( 'proj_doc_page.php">' ) . lang_get( 'docs_link' ) . '</a>';
+			//$t_menu_options[] = '<a href="' . helper_mantis_url( 'proj_doc_page.php">' ) . lang_get( 'docs_link' ) . '</a>';
 		}
 
 		# Project Wiki
 		if( config_get_global( 'wiki_enable' ) == ON ) {
-			$t_menu_options[] = '<a href="' . helper_mantis_url( 'wiki.php?type=project&amp;id=' ) . $t_current_project . '">' . lang_get( 'wiki' ) . '</a>';
+			//$t_menu_options[] = '<a href="' . helper_mantis_url( 'wiki.php?type=project&amp;id=' ) . $t_current_project . '">' . lang_get( 'wiki' ) . '</a>';
 		}
 
 		# Plugin / Event added options
@@ -846,15 +849,15 @@ function print_menu() {
 
 			# Admin can edit news for All Projects (site-wide)
 			if( ALL_PROJECTS != helper_get_current_project() || current_user_is_administrator() ) {
-				$t_menu_options[] = '<a href="' . helper_mantis_url( 'news_menu_page.php">' ) . lang_get( 'edit_news_link' ) . '</a>';
+				//$t_menu_options[] = '<a href="' . helper_mantis_url( 'news_menu_page.php">' ) . lang_get( 'edit_news_link' ) . '</a>';
 			} else {
-				$t_menu_options[] = '<a href="' . helper_mantis_url( 'login_select_proj_page.php">' ) . lang_get( 'edit_news_link' ) . '</a>';
+				//$t_menu_options[] = '<a href="' . helper_mantis_url( 'login_select_proj_page.php">' ) . lang_get( 'edit_news_link' ) . '</a>';
 			}
 		}
 
 		# Account Page (only show accounts that are NOT protected)
 		if( OFF == $t_protected ) {
-			$t_menu_options[] = '<a href="' . helper_mantis_url( 'account_page.php">' ) . lang_get( 'account_link' ) . '</a>';
+			//$t_menu_options[] = '<a href="' . helper_mantis_url( 'account_page.php">' ) . lang_get( 'account_link' ) . '</a>';
 		}
 
 		# Add custom options
@@ -868,7 +871,7 @@ function print_menu() {
 
 		# Logout (no if anonymously logged in)
 		if( !current_user_is_anonymous() ) {
-			$t_menu_options[] = '<a href="' . helper_mantis_url( 'logout_page.php">' ) . lang_get( 'logout_link' ) . '</a>';
+			//$t_menu_options[] = '<a href="' . helper_mantis_url( 'logout_page.php">' ) . lang_get( 'logout_link' ) . '</a>';
 		}
 		echo implode( $t_menu_options, ' | ' );
 		echo '</td>';
@@ -1009,13 +1012,13 @@ function print_manage_menu( $p_page = '' ) {
 		print_bracket_link( helper_mantis_url( $t_manage_tags_page ), lang_get( 'manage_tags_link' ) );
 	}
 	if( access_has_global_level( config_get( 'manage_custom_fields_threshold' ) ) ) {
-		print_bracket_link( helper_mantis_url( $t_manage_custom_field_page ), lang_get( 'manage_custom_field_link' ) );
+		//print_bracket_link( helper_mantis_url( $t_manage_custom_field_page ), lang_get( 'manage_custom_field_link' ) );
 	}
 	if( access_has_global_level( config_get( 'manage_global_profile_threshold' ) ) ) {
 		print_bracket_link( helper_mantis_url( $t_manage_prof_menu_page ), lang_get( 'manage_global_profiles_link' ) );
 	}
 	if( access_has_global_level( config_get( 'manage_plugin_threshold' ) ) ) {
-		print_bracket_link( helper_mantis_url( $t_manage_plugin_page ), lang_get( 'manage_plugin_link' ) );
+		//print_bracket_link( helper_mantis_url( $t_manage_plugin_page ), lang_get( 'manage_plugin_link' ) );
 	}
 	if( access_has_project_level( config_get( 'view_configuration_threshold' ) ) ) {
 		print_bracket_link( helper_mantis_url( $t_manage_config_page ), lang_get( 'manage_config_link' ) );
