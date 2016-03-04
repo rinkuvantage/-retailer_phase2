@@ -111,7 +111,7 @@
 			if ( ON == $t_boxes_position ) {
 				# for even box number start new row and column
 				if ( 1 == $t_counter%2 ) {
-					echo '<tr><td valign="top" width="50%">';
+					echo '<tr><td valign="top" class="td'.$t_counter.'" width="50%">';
 					include 'my_view_inc.php';
 					echo '</td>';
 				}
@@ -136,6 +136,8 @@
 
 				# display the required box
 				include 'my_view_inc.php';
+				
+				
 				echo '<br />';
 
 				# close the first column for first half of boxes

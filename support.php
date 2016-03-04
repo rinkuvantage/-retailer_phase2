@@ -116,7 +116,7 @@ if(isset($_POST['sendmsg']))
             <div class="container-fluid supportpage">
 			
                   <div class="innerpage mainregisterbox suptboxsection col-md-10">
-                  <div class="form-header">Sigmaways Retail Analytics Support</div>
+                  <div class="form-header">Support</div>
                       <iframe src="http://localhost/retailernew/support/my_view_page.php" width="100%" height="500px"></iframe> 
                     
                   </div>
