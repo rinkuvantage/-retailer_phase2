@@ -1,5 +1,6 @@
 <?php 
-@ob_start();
+	@ob_start();
+error_reporting(E_ALL);
 require_once('header-withoutlogin.php');
 if($login_active)
 {
@@ -88,7 +89,89 @@ if(isset($_POST['fname']))
 			}
 			$cnt++;
 		}
-		$res=$user->addUser($fieldnames,$fieldvalues);
+			
+		$res = $user->addUser($fieldnames,$fieldvalues);
+		
+		$mantis = array();
+			
+			$user_level = 10;
+						
+			$mantis['email'] = $post['user_email'];
+			$mantis['password'] = $_POST['pwd'];
+			$mantis['username'] = strtolower(trim($post['fname']));
+			$mantis['realname'] = trim($post['fname']) . " ".trim($post['lname']);
+			$mantis['enabled'] = 1;
+			$mantis['datecreated'] = strtotime(date('Y-m-d'));
+			$mantis['access_level'] = $user_level;
+			
+			$user->add_user_mantis($mantis);
+			
+			
+		// GET SUPER ADMIN CONFIG EMAIL TEMPLATE
+			
+			$get_email_setting = $template->getNotification(11);
+						
+			if(count($get_email_setting))
+			{
+				if((int)$get_email_setting['email_customer_when_register'] == 1){
+				
+				$get_email_template = $template->getTemplate(11, 1);				 
+								 
+				 if(!empty($get_email_template))
+				 {
+					 $default_subject = " signup on Sigmaways";		
+					 $account_company = "Sigmaways";			 
+					 $subject = str_replace("{{from_subject}}", $default_subject, trim($get_email_template['email_subject']));					 
+					 $msg =  str_replace("{{customer_name}}", ucfirst(trim($post['fname'])), trim($get_email_template['email_body_text']));					 
+					 $msgbody = 	str_replace("{{company_name}}", $account_company, trim($msg));					 
+					 
+					 $notify_to = trim($post['user_email']);
+					 
+										 
+					$from = "noreply@sigmaways.com";	
+					$fromname = "Sigmaways";	
+								 
+					 Sendemail( $notify_to, $subject, $msgbody,$from,$from,$fromname);					 
+					 $template->addNotications($res, $subject, $msgbody);
+						 
+				 }
+				 
+			  }
+			}	
+			
+			
+			
+			if(count($get_email_setting))
+			{
+				 
+				 if( (int)$get_email_setting['email_me_when_register'] == 1){
+					 
+				 	$get_email_template = $template->getTemplate(11, 1);
+					
+										
+						 if(!empty($get_email_setting))
+						 {
+							 $default_subject = " signup on Sigmaways";		
+							 $account_company = "Sigmaways";			 
+							 $subject = str_replace("{{from_subject}}", $default_subject, trim($get_email_template['email_subject']));		
+							 		 
+							$msg =  str_replace("{{customer_name}}", ucfirst(trim($post['fname'])), trim($get_email_template['email_body_text']));					 
+							$msgbody = str_replace("{{company_name}}", $account_company, trim($msg));
+												 
+							$from = "noreply@sigmaways.com";	
+							$fromname = "Sigmaways";	
+									 
+							 Sendemail( $owner_email, $subject, $msgbody, $from, $from, $fromname);					 
+							 $template->addNotications(11, $subject, $msgbody);
+						 }
+						 
+				 }				
+			}	
+			
+			
+			// END 
+		
+	
 		if($res>0)
 		{
 			$activatationlink=$siteurl.'?activateaccount='.$post['activationkey'].'&email='.$post['user_email'];
@@ -99,10 +182,7 @@ if(isset($_POST['fname']))
 			$from = $post['user_email'];
 			$fromname=$sitname;
 			
-			$message="Dear ".$post['fname']." ".$post['lname'].",<br /><br />
-			Thanks for signing up with us. Please make a note of your credentials to send analytics request.<br /><br />
-			Token: ".$post['tokenid']."<br />
-			Key: ".$post['keyid']."<br /><br />
+			$message="Dear ".$post['fname']." ".$post['lname'].",<br /><br />Thanks for signing up with us. Please make a note of your credentials to send analytics request.<br /><br />Token: ".$post['tokenid']."<br />Key: ".$post['keyid']."<br /><br />
 			Your login details are given below:<br /><br />
 			Email: ".$post['user_email']."<br />
 			Password: ".$_POST['pwd']."<br /><br />

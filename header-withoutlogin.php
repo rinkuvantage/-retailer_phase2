@@ -1,6 +1,4 @@
-<?php require_once('includes/head.php'); 
-
-?>
+<?php require_once('includes/head.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,10 +47,10 @@
             <form id="toploginuser" class="form" name="toploginuser" action="" method="post"> 
 				<label class="showmsg">Login</label> 
 				<div class="m_loginbox">
-				<input name="email" id="email" type="email" placeholder="Email address" title="Enter your email" required="" class="required email">
+				<input name="email" id="email" type="email" placeholder="Email address" title="Enter your email" required class="required email">
 				</div>
 				<div class="m_loginbox">
-				<input name="pwd" id="pwd" type="password" placeholder="Password" title="Enter your password" required="" autocomplete="off" class="required">
+				<input name="pwd" id="pwd" type="password" placeholder="Password" title="Enter your password" required autocomplete="off" class="required">
 				</div>
 				<button type="button" id="btnLogin" class="btn">Login</button>
 			</form>
@@ -87,7 +85,7 @@
           <div class="control-group col-md-12">
             <label class="forgotemail col-md-4 text-right" for="inputEmailForgot">Email</label>
             <div class="col-md-8 text-left">
-              <input class="col-md-12 form-control required email" type="email" name="email" id="fgemail" placeholder="you@youremail.com" required="">
+              <input class="col-md-12 form-control required email" type="email" name="email" id="fgemail" placeholder="you@youremail.com" required>
             </div>
             <span class="help-block text-center">
             <div class="col-md-4"></div>

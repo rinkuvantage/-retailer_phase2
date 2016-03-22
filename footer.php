@@ -1,6 +1,6 @@
 <footer class="text-center ftrbox">
-<div class="col-md-12 ftrmid"><div class="col-md-6 f_leftbox">&copy; Copyright 2016 Sigmaways. All rights reserved.</div>
-<div class="col-md-6 f_rightbox">
+<div class="col-md-12 ftrmid"><div class="col-md-5 f_leftbox">&copy; Copyright 2016 Sigmaways. All rights reserved.</div>
+<div class="col-md-7 f_rightbox">
 <ul>
 <li><a href="http://sigmaways.com/">About</a></li>
 <li><a href="termsofservices.php">Terms & Conditions</a></li>

@@ -251,7 +251,7 @@ if($template_id ==1)
 							 	<textarea id="email_body_text" name="email_body_text" class="ckeditor form-control required" required="required"><?php echo $email_body_text; ?></textarea>
 							  		</div>
 							  </div>
-							  <div class="form-box-footer form-header">
+							  <div class="form-box-footer form-header border_bott_none">
 								<input class="btn btn-block template_save" type="submit" name="templateSubmit" value="Save" /> 
                                 <input class="btn btn-block template_preview" type="button" name="templatepreview" value="Preview" />						   
 							  </div>
@@ -262,6 +262,7 @@ if($template_id ==1)
 				  </div>
             </div>
         </div>
+  </div>     
  <script src="js/jquery.js"></script>   
 <div id="myModal21" class="modal fade" role="dialog"></div>      
 

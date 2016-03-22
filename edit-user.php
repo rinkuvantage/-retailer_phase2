@@ -105,7 +105,7 @@ if(isset($_POST['signupSubmit']))
 			}
 			
 			$_SESSION['message']='Profile of '.$post['fname'].' '.$post['lname'].' has been updated successfully.';
-			echo"<script type='text/javascript'>window.location='edit-user.php?user_id=".$uid."';</script>";
+			echo"<script type='text/javascript'>window.location='manageusers.php';</script>";
 			exit();
 		}
 	}
@@ -121,20 +121,6 @@ if(isset($_POST['signupSubmit']))
         <div id="page-wrapper">
 
             <div class="container-fluid">
-
-                <!-- Page Heading -->
-                <!--<div class="row">
-                    <div class="col-lg-12">
-                        <ol class="breadcrumb">
-                            <li class="active">
-                                <i class="fa fa-fw fa-user"></i>Edit User Profile
-                            </li>
-                        </ol>
-                    </div>
-                </div>-->
-                <!-- /.row -->
-
-                <!-- Flot Charts -->
 				<div class="innerpage mainregisterbox">
 				 <div class="row editusersectionblock">
 					<div class="login_form col-sm-12 col-xs-12 col-md-10 col-lg-10 admprofileedit useredit">
@@ -217,34 +203,21 @@ if(isset($_POST['signupSubmit']))
 							  </div>
 							  </div>
 							  
-							  <div class="form-box-footer form-header">
+							  <div class="form-box-footer form-header border_bott_none">
 								<input class="btn btn-block" type="submit" name="signupSubmit" value="Update" /> 
 						   
 							  </div>
+                              
+                              </div>
 							</form>
 						  </div>
 						  </div>
 				  </div>
-				
-				
-				
-                
-                
-            </div>
-            <!-- /.container-fluid -->
-
-        </div>
-        <!-- /#page-wrapper -->
-
-    </div>
-    <!-- /#wrapper -->
-
-    <!-- jQuery -->
+            </div> 
+        </div> 
+         </div> 
     <script src="js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-
 	<script type="text/javascript" src="js/validate.js"></script>
 	<script type="text/javascript">
 	jQuery(document).ready(function(){

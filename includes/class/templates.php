@@ -27,11 +27,9 @@ if ( !class_exists( 'Templates' ) ) {
 		function deleteTemplate($user_id, $template_id)
 		{
 			global $prefix;			
-			
 			$strselect = "DELETE FROM `".$prefix."templates` where `ID` = `$user_id` AND `template_id` = '$template_id'";
 			$selectresult = mysql_query($strselect);
 			return true;			
-			
 		}
 		
 		/*
@@ -40,10 +38,8 @@ if ( !class_exists( 'Templates' ) ) {
 		*/
 		function getTemplate($user_id, $template_id)
 		{ 
-			global $prefix;
-			
-			$strSQL = "SELECT * FROM `".$prefix."templates` WHERE `ID` = '$user_id' AND `template_id` = '$template_id'";
-			
+			global $prefix;			
+			$strSQL = "SELECT * FROM `".$prefix."templates` WHERE `ID` = '$user_id' AND `template_id` = '$template_id'";			
 			$result = mysql_query($strSQL);
 			if(!$result)
 			{
@@ -53,22 +49,115 @@ if ( !class_exists( 'Templates' ) ) {
 			{
 				$data=array();				
 				while($row = mysql_fetch_assoc($result))
-				{
-					
-					$data = $row;
-					
-				}
-				
+				{					
+					$data = $row;					
+				}				
 				return $data;			
 				
 			}
 		}
 		
+		/*
+		Function Name: addNotification()
+		Function Aim : To save user notification settings
+		*/
+		function addNotification($user_id, $fields)
+		{
+			global $prefix;
+			if(!empty($fields) )
+			{
+				$del = "DELETE FROM `".$prefix."user_notifications_settings` WHERE `user_id` = '".$user_id."'";
+				mysql_query($del);
+				
+				$sql = "INSERT INTO `".$prefix."user_notifications_settings` SET `user_id` = '".$user_id."'";				
+				
+				foreach($fields as $key=> $val)
+				{					
+					$sql .= ", `$key` = '".$val."'";
+				}
+				
+				$result=mysql_query($sql);
+				
+				return mysql_insert_id();
+			}
+			else
+			{
+				return 0;
+			}
+		}
+		
+		
+		// Get Notification Settings
+		
+		function getNotification($user_id)
+		{
+			global $prefix;			
+			$data = array();								
+			$sql = "SELECT * FROM `".$prefix."user_notifications_settings` WHERE `user_id` = '".$user_id."'";
+			$result = mysql_query($sql);			
+			while($row = mysql_fetch_assoc($result)){				
+				$data = $row;
+			}	
+			
+			return $data;		
+		}
+		
+		
+		/*
+		Function Name: addNotification()
+		Function Aim : To save user notification settings
+		*/
+		function addNotications($user_id, $subject, $message)
+		{
+			global $prefix;							
+							
+				$add_date = date('Y-m-d h:i:s');			
+				
+			$sql = "INSERT INTO `".$prefix."notifications` SET `user_id` = '".$user_id."', `subject` = '".$subject."', `msg` = '".$message."', notification_date = NOW()";					
+				
+				$result=mysql_query($sql);				
+				return mysql_insert_id();		
+		}		
+		
+		// DELETE Notifications
+		
+		function deleteNotification($notifi_id)
+		{
+			 global $prefix;				
+			 $sql = "DELETE FROM `".$prefix."notifications` WHERE  `notification_id` = '".$notifi_id."'";
+			 $result=mysql_query($sql);														
+			 return true;		
+		}
+		
+		
+		// Get Notification Settings		
+		function getAllnotifications($user_id)
+		{
+			global $prefix;			
+			$data = array();								
+			$sql = "SELECT * FROM `".$prefix."notifications` WHERE `user_id` = '".$user_id."'";
+			$result = mysql_query($sql);			
+			while($row = mysql_fetch_assoc($result)){				
+				$data[] = $row;
+			}			
+			return $data;		
+		}
+		
+		// get notification by notification ID		
+		function viewNotification($notification_id){			
+			global $prefix;			
+			$data = array();								
+			$sql = "SELECT * FROM `".$prefix."notifications` WHERE `notification_id` = '".$notification_id."'";
+			$result = mysql_query($sql);			
+			while($row = mysql_fetch_assoc($result)){				
+				$data = $row;
+			}			
+			return $data;			
+		}
 		
 	}	
 
 	global $template;
-
 	$template = new Templates();
 
 }

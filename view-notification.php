@@ -5,45 +5,30 @@ $uid=$_SESSION["User_id"];
 $tokenid=$user->Userdetail($uid, 'tokenid', true);
 $keyid=$user->Userdetail($uid, 'keyid', true);
 
-
-if(isset($_GET['del_notification']) && trim($_GET['del_notification']) == 'del')
+ $notification_id = (int)base64_decode($_GET['noti']);
+$view_info = $template->viewNotification($notification_id);
+if(count($view_info) == 0)
 {
-	$notif_id = (int)base64_decode(trim($_GET['noti']));
-	$template->deleteNotification($notif_id);
-	
-	$_SESSION['message']='Notifications message deleted successfully.';
 	@header('Location: notifications.php');	
 }
-
-	$notifications = $template->getAllnotifications($uid);
 ?>
 <div id="page-wrapper">
   <div class="container-fluid">
+    <!-- Page Heading -->
+    
+    <!-- /.row -->
     <div class="row">
       <div class="col-sm-12 col-xs-12 <?php if($user_type=='admin' || $user_type=='supadmin' )echo ' col-md-8'; else ' col-md-12' ?>">
-        <table class="notificationtable table table-striped">
-          <thead>
-            <tr class="nhding">
-              <th width="65%">Subject</th>
-              <th width="25%">Date</th>
-              <th width="10%">Action</th>
-            </tr>
-          </thead>
-          <tbody>          
-          <?php if(count($notifications)){		  
-		  foreach($notifications as $notification){  ?>          
-            <tr>
-              <td><?php echo $notification['subject']; ?></td>
-              <td><?php echo date('m/d/Y h:i:s', strtotime($notification['notification_date'])); ?></td>
-              <td><a href="./view-notification.php?noti_type=view&noti=<?php echo base64_encode($notification['notification_id']); ?>">View</a>&nbsp;&nbsp;<a href="./notifications.php?del_notification=del&noti=<?php echo base64_encode($notification['notification_id']); ?>">Delete</a></td>
-            </tr>
-          <?php }		  
-		  
-		  }else{ ?>  
+        <table class="notificationtable table table-striped">           
+           <tbody>
            <tr>
-              <td colspan="4">You dont' have any notifications.</td>              
+              <td width="20%"><b>Subject</b></th>
+              <td width="80%"><?php echo $view_info['subject']; ?></th>              
             </tr>          
-          <?php } ?>
+           <tr>
+              <td><b>Message:</b></th>
+              <td><?php echo $view_info['msg']; ?></th>              
+            </tr>         
           </tbody>
         </table>
       </div>
@@ -64,12 +49,19 @@ if(isset($_GET['del_notification']) && trim($_GET['del_notification']) == 'del')
           </li>
         </ul>
       </div>
-      <?php } ?>
+      <?php } ?>    
+      
     </div>
-  </div>  
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
 </div>
+<!-- /#page-wrapper -->
 </div>
+<!-- /#wrapper -->
+<!-- jQuery -->
 <script src="js/jquery.js"></script>
+<!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript">
 		jQuery(document).ready(function(){

@@ -33,7 +33,7 @@ if(count($currentpagesss)>1){$currentpage=$currentpagesss[0];}
 <link href="css/plugins/morris.css" rel="stylesheet">
 <!-- Custom Fonts -->
 <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
+<link href="css/jquery.atAccordionOrTabs.css" rel="stylesheet" type="text/css">
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -87,7 +87,7 @@ if(count($currentpagesss)>1){$currentpage=$currentpagesss[0];}
   <div class="top-titlebar">
     <div class="container">
 		<?php /*?><?php if($currentpage=='uploadfiles.php'){ ?><h1><i class="fa fa-dashboard"></i> Dashboard</h1><?php } ?><?php */?>
-		<?php if($currentpage=='profile.php'){ ?><h1><i class="fa fa-fw fa-user"></i> Profile<?php } ?>
+		<?php if($currentpage=='profile.php'){ ?><i class="fa fa-fw fa-user"></i> Profile<?php } ?>
 		<?php if($currentpage=='notifications.php'){ ?><h1><i class="fa fa-bell"></i> Notification</h1><?php } ?>
 		<?php if($currentpage=='edit-notifications.php'){ ?><h1><i class="fa fa-bell"></i> Edit Preference</h1><?php } ?>
 		<?php if($currentpage=='uploadfiles.php'){ ?><h1><i class="fa fa-upload"></i> Upload Files</h1><?php } ?>
@@ -129,6 +129,4 @@ if(count($currentpagesss)>1){$currentpage=$currentpagesss[0];}
 </nav>
 <?php if(isset($_SESSION['message']) && trim($_SESSION['message'])!=''){ ?>
 <div class="success"><?php echo $_SESSION['message']; $_SESSION['message']=''; ?></div>
-<?php } ?>
-
-
+<?php } 

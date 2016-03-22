@@ -635,6 +635,8 @@ if ( !class_exists( 'Users' ) ) {
 					return mysql_num_rows($result);
 			}
 		}
+		
+		
 	}
 	
 	

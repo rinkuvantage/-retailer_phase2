@@ -13,14 +13,15 @@ $prefix="ret_";
 $_salt='R{2dX8fi7SD#J(1f[Sus&&Q9dcAUUo:k_,k@5I8rIdUh/:@O =^N[Y}aOD;l;jE6';
 
 //Website url
-$siteurl='http://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
+  $siteurl='http://'.$_SERVER['SERVER_NAME']."/retailer_phase2/index.php"; 
+
 
 //Website Name use for title in head tag
 $sitname='Sigmaways Retail Analytics';
 
 //Global email for recieving and sending emails.
 
-$owner_email='abhishekvaid@gmail.com';
+$owner_email='vantage.krishna@gmail.com';
 
 //Email signature
 $email_signature='<br />Sincerely,<br />Sigmaways Team';
@@ -33,6 +34,7 @@ $fileextension=array('.txt','.rtf','.csv','.xlsx','.tar','.gz', '.tar.gz', '.zip
 
 require_once('class/users.php');
 require_once('class/templates.php');
+require_once('class/inviteuser.php');
 
 $ip=$user->getRealIpAddr();
 $data=$user->ip_info($ip, "country_code");
@@ -133,4 +135,3 @@ if(isset($_REQUEST['fileid']))
 	}
 	else{ echo'file not exist';}
 }
-
