@@ -5,13 +5,13 @@ if ( !class_exists( 'Inviteuser' ) ) {
 		/*
 		Function Name: Add Invited User()		
 		*/
-		function addInvite($email = '',$userid = 0, $invited_key = '')
+		function addInvite($email = '',$userid = 0, $invited_key = '', $role = 'user')
 		{
 			global $prefix;
 			if(!empty($email) && !empty($userid))
 			{
 				
-				$strSQL= "INSERT INTO `".$prefix."invited_users` SET `email` = '".$email."', `invited_by` = '".$userid."', `invited_rand_log` = '".$invited_key."', `invited_date` = NOW()";
+				$strSQL= "INSERT INTO `".$prefix."invited_users` SET `role` = '".$role."', `email` = '".$email."', `invited_by` = '".$userid."', `invited_rand_log` = '".$invited_key."', `invited_date` = NOW()";
 				$result = mysql_query($strSQL);
 				
 				return mysql_insert_id();
@@ -66,12 +66,41 @@ if ( !class_exists( 'Inviteuser' ) ) {
 				}
 				return $data;
 			}
-		}		
+		}	
+		
+		
+				
+		
+		/*
+		Function Name: getInvitee()
+		Function Aim : To get specific invitee
+		*/
+		function getInvitee($id)
+		{ 
+			global $prefix;
+			$strSQL = "SELECT * FROM ".$prefix."invited_users WHERE `invited_id` = '".$id."'";			
+			$result = mysql_query($strSQL);
+			if(!$result)
+			{
+				return 0;
+			}
+			else
+			{
+				$data=array();
+				$count=1;
+				while($row = mysql_fetch_assoc($result))
+				{					
+					$data[$count]=$row;
+					$count++;
+				}
+				return $data;
+			}
+		}	
 		
 		
 	}
+	
 	global $inviteuser;
 
 	$inviteuser = new Inviteuser();
-
 }

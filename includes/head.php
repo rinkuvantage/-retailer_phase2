@@ -35,6 +35,7 @@ $fileextension=array('.txt','.rtf','.csv','.xlsx','.tar','.gz', '.tar.gz', '.zip
 require_once('class/users.php');
 require_once('class/templates.php');
 require_once('class/inviteuser.php');
+require_once('class/group.php');
 
 $ip=$user->getRealIpAddr();
 $data=$user->ip_info($ip, "country_code");

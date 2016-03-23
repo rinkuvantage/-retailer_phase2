@@ -18,15 +18,15 @@ else
 	$limitsend = $totalrec;
 }
 
-$user_list_type = " and user_type='user'  AND `parent_id` = $uid AND `active` = 1";
+$user_list_type = " AND `parent_id` = $uid AND `active` = 1";
 
 if($user_type == 'supadmin')
 {
 	
-	$user_list_type = " and user_type IN('user', 'admin')";
+	$user_list_type = " and user_type IN('user', 'admin') AND `active` = 1";
 }
 
-$userlist = $user->UserList("$user_list_type order by ID desc limit $limitstart, $totalrec");
+$active_user_lists = $user->UserList("$user_list_type order by ID desc limit $limitstart, $totalrec");
 $totalrecords=$user->UserList("$user_list_type order by ID desc");
 
 
@@ -34,14 +34,32 @@ $totalrecords=$user->UserList("$user_list_type order by ID desc");
 $invities = $inviteuser->getallInvitee($uid);
 
 
+$deactive_user_list_type = " AND `parent_id` = $uid AND `active` = 0";
+
+if($user_type == 'supadmin')
+{
+	
+	$deactive_user_list_type = " and user_type IN('user', 'admin') AND `active` = 0";
+}
+
+$deactive_user_lists = $user->UserList("$deactive_user_list_type order by ID desc limit $limitstart, $totalrec");
+
 ?>
         <div id="page-wrapper" class="arrangeheight">
             <div class="container-fluid">
                 <div class="row">                
-                <div class="main_div">                                
-                <ul class="demo">
-  					<li class="right"><a>Active</a>
-                <section>
+                <div class="main_div">  
+                
+                <ul class="nav nav-tabs">
+                  <li class="active"><a data-toggle="tab" href="#active_user">Active</a></li>
+                  <li><a data-toggle="tab" href="#deactive_user">Deactivated</a></li>
+                  <li><a data-toggle="tab" href="#invited_user">Invited</a></li>
+                </ul>
+        <form action="" method="post">           
+        <div class="tab-content">   
+                                              
+         <div id="active_user" class="tab-pane fade in active">
+  					
                         <div class="user_div">
                       
                             <div class="middle_div">
@@ -51,14 +69,14 @@ $invities = $inviteuser->getallInvitee($uid);
                                 </div>
                                     <div class="right_div">
                                     <ul>
-                                    <li><a class="manage" href="#">Manage user groups</a></li>
+                                    <li><a class="manage" href="./manage-groups.php">Manage user groups</a></li>
                                     <li class="icon-add"><button data-toggle="modal" data-target="#inviteuser"><img src="./images/index.png">invite user</button></li>
                                     </ul>
                                     </div>
                             </div>
                                 <div class="last_div" id="activated_list">                                
-                                <?php if(!empty($userlist)){ ?>
-                                <?php foreach($userlist as $user1){ ?>
+                                <?php if(!empty($active_user_lists)){ ?>
+                                <?php foreach($active_user_lists as $user1){ ?>
                                     <div class="account_profile">
                                         <div class="icon_div"></div>
                                         <div class="info">
@@ -66,23 +84,24 @@ $invities = $inviteuser->getallInvitee($uid);
                                             <li><a href="./profile-detail.php?csid=<?php echo $user1['ID']; ?>&action=view"><?php echo $user1['fname'] ." ". $user1['lname']; 
                                             if($user1['ID'] == $uid){ echo "(You)"; }?></a></li>
                                             <li><?php echo $user1['user_email']; ?></li>
-                                            <li><select name="u_role">
-                                                  <option value="">Change Role</option>
-                                                  <option value="">Admin</option>							  
-                                                  <option value="">Viewer</option>							  
+                                            <li><select name="u_role" class="urole" id="u<?php echo $user1['ID']; ?>">
+                                                  <option value="">Change Role</option>                                                  						  
+                                                  <option value="u<?php echo $user1['ID']; ?>-user-<?php echo $user1['ID']; ?>"<?php if($user1['user_type'] =='user'){ echo 'selected'; } ?>>User</option>
+                                                  <option value="u<?php echo $user1['ID']; ?>-admin-<?php echo $user1['ID']; ?>"<?php if($user1['user_type'] =='admin'){ echo 'selected'; } ?>>Admin</option>								  
                                                 </select>or <a class="deactivelink deact" id="de_<?php echo $user1['ID']; ?>">Deactivate</a></li>
                                             </ul>
                                         </div>
                                     </div>	
                                     <?php } ?>                
-                                 <?php } ?> 
+                                 <?php }else{ ?> 
+                                 <p class="listCaption">Sorry, no result found</p>
+                                 <?php } ?>
                                 </div>
                         </div>				
-                </section>
-				</li>
+              
+			</div>	
                 
-                <li class="right"><a>Deactivated</a>
-   <section>
+    <div id="deactive_user" class="tab-pane fade in">           
  <div class="user_div">
 		<div class="middle_div">
 			<div class="left_div">
@@ -91,52 +110,48 @@ $invities = $inviteuser->getallInvitee($uid);
 			</div>
 				<div class="right_div">
 				<ul>
-				<li><a class="manage" href="#">Manage user groups</a></li>
+				<li><a class="manage" href="./manage-groups.php">Manage user groups</a></li>
 				<li class="icon-add"><button data-toggle="modal" data-target="#inviteuser"><img src="images/index.png">invite user</button></li>
 				</ul>
 				</div>
 		</div>
-			<div class="last_div" id="deactivated_list">			
+			<div class="last_div" id="deactivated_list">	
+            
+            <?php if($deactive_user_lists): ?>
+            <?php foreach($deactive_user_lists as $deactive_user_list){ ?>		
 				<div class="account_profile">
 					<div class="icon_div"></div>
 					<div class="info">
 						<ul>
-						<li><a href="#">kg sd (You)</a></li>
-						<li>prakrutiag@gmail.com</li>
-						<li><select>
-							  <option value="category">Change Role</option>
-							  <option value="category">Admin</option>
-							  <option value="category">Editor</option>
-							  <option value="category">Viewer</option>
-							  <option value="category">Embedded Dashboard Only</option>
-							</select><a class="deactivelink" href="#">or Activate</a></li>
+						<li><a href="#"><?php echo $deactive_user_list['fname'] ." ". $deactive_user_list['lname'];if($deactive_user_list['ID'] == $uid){ echo "(You)"; } ?></a></li>
+						<li><?php echo $deactive_user_list['user_email']; ?></li>
+						<li><select name="user_role" class="urole" id="u<?php echo $$deactive_user_list['ID']; ?>">
+							  <option value="">Change Role</option>  
+							  <option value="u<?php echo $deactive_user_list['ID']; ?>-user-<?php echo $deactive_user_list['ID']; ?>"<?php if($deactive_user_list['user_type'] =='user'){ echo 'selected'; } ?>>User</option>
+							   <option value="u<?php echo $deactive_user_list['ID']; ?>-admin<?php echo $deactive_user_list['ID']; ?>"<?php if($deactive_user_list['user_type'] =='admin'){ echo 'selected'; } ?>>Admin</option>
+							</select><a class="deactivelink acti" id="act_<?php echo $deactive_user_list['ID']; ?>">or Activate</a></li>
 						</ul>
 					</div>
-				</div>		
+				</div>	
+              <?php } ?>  
+              <?php else: ?> 
+                                 <p class="listCaption">Sorry, no result found</p>
+             <?php endif; ?>
 			</div>
-	</div>
-	</section>
-  </li>
-  
-  
-  
-              <li class="right"><a>Invited</a>
-                <section>
-                    <div class="user_div ">
-            
+	</div>	  
+  </div>
+  				 <div id="invited_user" class="tab-pane fade in">                 
+                    <div class="user_div ">            
                     <div class="middle_div">
                         <div class="left_div"><p class="listCaption">The project roster allows you to administer all project members.</p></div>
                          <div class="right_div">
                             <ul>
-                            <li><a class="manage" href="#">Manage user groups</a></li>
+                            <li><a class="manage" href="./manage-groups.php">Manage user groups</a></li>
                             <li class="icon-add"><button data-toggle="modal" data-target="#inviteuser"><img src="images/index.png">invite user</button></li>
                             </ul>
                           </div>
                         </div>
-                        
-                        
-                 <div class="last_div" id="invitee_list">	
-                 
+                 <div class="last_div" id="invitee_list">                 
                  	<?php if(count($invities)): ?>	
                     <?php foreach($invities as $invitee){ ?>
                         <div class="account_profile">
@@ -151,18 +166,17 @@ $invities = $inviteuser->getallInvitee($uid);
                         </div>	
 						<?php } ?>
 					<?php endif; ?>
-			</div>    
-                        
-                </div>   
-                </section>
-          </li>                
-   </ul>   
-                                    
+					</div>                   
+                </div>              
+           </div>     
+         </div>      
+        </form>                    
                 </div>
             </div>
          </div>
     </div>    
  </div>   
+ 
 <div class="modal  fade" id="inviteuser" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -179,6 +193,7 @@ $invities = $inviteuser->getallInvitee($uid);
              <div class="col-lg-8">
              	<select name="user_role" >
                 <option value="user">User</option>
+                <option value="admin">Admin</option>
                 </select>
              </div>
             </div>
@@ -197,14 +212,10 @@ $invities = $inviteuser->getallInvitee($uid);
  	</div>
  	</div>
  </div>   
+ 
+
 <script type="text/javascript" src="js/jquery.js"></script>    
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script src="js/jquery.bbq.js"></script>
-<script src="js/jquery.atAccordionOrTabs.js"></script>
-<script type="text/javascript">
-$('.demo').accordionortabs();
-</script>
-
 <script type="text/javascript">
 $(document).ready(function(e) {
     
@@ -232,6 +243,29 @@ $(document).ready(function(e) {
 					}else if (json['success']) {
 							$('#inviteuser').modal('toggle');	
 							$("#page-wrapper").before(json['success']);										
+					}
+							
+		   }	
+		});
+			
+	});	
+	
+	
+	$(".resendInvitation").click(function(){	
+		
+		var currt_id = $(this).attr("id");
+		
+		var postdata = {resent_id : currt_id};
+		
+		jQuery.ajax({
+		url: './invite_user.php?action=resend',
+		type: 'post',
+		data: postdata,
+		dataType: 'json',
+		success: function(json) {				
+									
+					if (json['success']) {								
+							$("#page-wrapper").before(json['success']);											
 					}
 							
 		   }	
@@ -282,7 +316,35 @@ $(document).ready(function(e) {
 					if (json['success']) {
 							
 							$("#activated_list").html('');
-							$("#activated_list").html(json['success']);										
+							$("#deactivated_list").html('');							
+							$("#activated_list").html(json['success']['activated_list']);
+							$("#deactivated_list").html(json['success']['deactivated_list']);										
+					}
+							
+		   }	
+		});
+			
+	});
+	
+	$(".acti").click(function(){	
+		
+		var currt_id = $(this).attr("id");
+		
+		var postdata = {act_id : currt_id};
+		
+		jQuery.ajax({
+		url: './invite_user.php?action=activate',
+		type: 'post',
+		data: postdata,
+		dataType: 'json',
+		success: function(json) {				
+									
+					if (json['success']) {
+							
+							$("#activated_list").html('');
+							$("#deactivated_list").html('');							
+							$("#activated_list").html(json['success']['activated_list']);
+							$("#deactivated_list").html(json['success']['deactivated_list']);										
 					}
 							
 		   }	
@@ -291,7 +353,41 @@ $(document).ready(function(e) {
 	});	
 	
 	
-	
+	$(".urole").on("change", function(){
+		
+		var selected_val = $(".urole").val();
+		
+		if(selected_val !=="")
+		{
+		
+				jQuery.ajax({
+				url: './invite_user.php?action=changerole',
+				type: 'post',
+				data: { "changerole" : selected_val},
+				dataType: 'json',
+				success: function(json) {				
+											
+							if (json['success']) {							
+									$('#' + json['success']['id']).html('');
+									$('#' + json['success']['id']).html(json['success']['optionval']);	
+									$("#page-wrapper").before(json['success']['message']);	
+									
+																
+									$(".success").delay(5000).fadeOut('slow');
+									
+								/*	
+								if(json['success']['redirect'])
+								{
+									window.location = "./uploadfiles.php";
+								}	*/								
+							}
+									
+				   }	
+				});
+		   }
+		
+			
+	});
 });
 </script>
 <?php require_once('footer.php'); ?>

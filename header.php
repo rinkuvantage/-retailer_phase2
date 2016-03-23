@@ -101,25 +101,35 @@ if(count($currentpagesss)>1){$currentpage=$currentpagesss[0];}
   <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav side-nav dashboardsidebar">
-     <?php /*?> <li<?php if($currentpage=='uploadfiles.php'){ ?> class="active"<?php } ?>> <a href="uploadfiles.php"> Dashboard</a> </li><?php */?>
-      <li<?php if($currentpage=='profile.php'){ ?> class="active"<?php } ?>> <a href="profile.php"> Profile</a> </li>
-      <?php /*?><li<?php if($currentpage=='manage-passwords.php'){ ?> class="active"<?php } ?>>
-                        <a href="<?php echo $siteurl; ?>/manage-passwords"><i class="fa fa-fw fa-table"></i> Manage Password</a>
-                    </li><?php */?>
+    <?php if($currentpage != 'manage-groups.php'){ ?>
+    
+      <li<?php if($currentpage=='profile.php'){ ?> class="active"<?php } ?>> <a href="profile.php"> Profile</a> </li>      
       <li<?php if($currentpage=='notifications.php' || $currentpage=='edit-notifications.php'){ ?> class="active"<?php } ?>> <a href="notifications.php"> Notification</a> </li>
-      <li<?php if($currentpage=='uploadfiles.php'){ ?> class="active"<?php } ?>> <a href="uploadfiles.php"> Upload Files</a> </li>
-     <!-- <li<?php if($currentpage=='viewfiles.php'){ ?> class="active"<?php } ?>> <a href="viewfiles.php"> View files</a> </li>-->
+      <li<?php if($currentpage=='uploadfiles.php'){ ?> class="active"<?php } ?>> <a href="uploadfiles.php"> Upload Files</a> </li>     
 	   <li<?php if($currentpage=='support.php'){ ?> class="active"<?php } ?>> <a href="support.php">Support</a> </li>
 	  <li<?php if($currentpage=='analytics.php'){ ?> class="active"<?php } ?>> <a href="analytics.php">Analytics</a> </li>
      
       <?php if($user_type=='admin' || $user_type=='supadmin'){ ?>
-     <li<?php if($currentpage=='email-templates.php' || $currentpage=='email-template.php'){ ?> class="active"<?php } ?>> <a href="email-templates.php">Email Templates</a> </li> 
-      
-      <li<?php if($currentpage=='manageusers.php' || $currentpage=='edit-user.php'){ ?> class="active"<?php } ?>> <a href="manageusers.php">Manage Users</a> </li>
-      
+     <li<?php if($currentpage=='email-templates.php' || $currentpage=='email-template.php'){ ?> class="active"<?php } ?>> <a href="email-templates.php">Email Templates</a> </li>       
+      <li<?php if($currentpage=='manageusers.php' || $currentpage=='edit-user.php'){ ?> class="active"<?php } ?>> <a href="manageusers.php">Manage Users</a> </li>  
       
       <?php } ?>
+	 <?php }else{ 
+	 $groups =	$groupuser->userGroups($uid);
 	 
+	 
+	 ?>     
+     <li<?php if($currentpage=='manage-groups.php'){ ?> class="active"<?php } ?>> <a href="manage-groups.php"> Manage Groups</a> </li>
+     	<ul class="groups_child">
+        	<li><a data-toggle="modal" data-target="#createGroups">+ Create Groups</a></li>
+            <li><a href="manage-groups.php?vaction=active">All Active Users</a></li>
+            <li><a href="manage-groups.php?vaction=unassign">Ungrouped Users</a></li>
+            <li>------------------------</li>
+            <?php foreach($groups as $groupname){ ?>
+            <li><a href="manage-groups.php?vaction=assign_grp&gip=<?php echo $groupname['group_id']; ?>"><?php echo $groupname['name']; ?></a></li>
+            <?php } ?>
+        </ul>
+     <?php } ?>
     </ul>
 	
   </div>
