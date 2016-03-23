@@ -108,8 +108,12 @@ make changes in createuser.php and register.php
 
 #Update 23 March, 2016
 => Added feature to invite user, set there role. manage group which includes add edit delete by admin.
+
 => Added 3 additional tables added which works as follow:
+
 => #1. ret_invited_users (It stores invite user data)
+
 => #2. ret_group (It stores group data which is created by admin, super admin)
+
 => #3. ret_invited_users (It stores user and group relations)
 
