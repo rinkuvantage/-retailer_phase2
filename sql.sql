@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 03, 2016 at 06:41 AM
+-- Generation Time: Mar 23, 2016 at 03:09 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -543,7 +543,7 @@ CREATE TABLE IF NOT EXISTS `mantis_tokens_table` (
   `expiry` int(10) unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `idx_typeowner` (`type`,`owner`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 -- --------------------------------------------------------
 
@@ -638,16 +638,16 @@ CREATE TABLE IF NOT EXISTS `mantis_user_table` (
   UNIQUE KEY `idx_user_username` (`username`),
   KEY `idx_enable` (`enabled`),
   KEY `idx_access` (`access_level`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `mantis_user_table`
 --
 
 INSERT INTO `mantis_user_table` (`id`, `username`, `realname`, `email`, `password`, `enabled`, `protected`, `access_level`, `login_count`, `lost_password_request_count`, `failed_login_count`, `cookie_string`, `last_visit`, `date_created`) VALUES
-(1, 'admin', '', 'rinku.vantage@gmail.com', '21232f297a57a5a743894a0e4a801fc3', 1, 0, 90, 5, 0, 0, '8f1e08ab9a4e5379fb4f10edb28874b3d02cc624570d77b7d1df0c3e0117a617', 1456818094, 1456407157),
-(3, 'krishna2', '', 'vantage1.krishna@gmail.com', '243bd1ce0387f18005abfc43b001646a', 1, 0, 25, 1, 0, 0, 'f080d81320a1fe2f55f7cc0756803d30abc88ccff2813694bcd299104093138a', 1456411359, 1456411226),
-(7, 'krishna', 'Krishna Kumar', 'vantage.krishna@gmail.com', '8854b47fc05990266cc6df7f69d1adeb', 1, 0, 10, 0, 0, 0, 'zch7Hk2Nb6DI37nAra3b9xVn8BPHfARiQ8ceDZ1ajJeKAeSCRNnf3dfbFDp8oYYF', 1, 1456684200);
+(1, 'admin', '', 'rinku.vantage@gmail.com', '21232f297a57a5a743894a0e4a801fc3', 1, 0, 90, 6, 0, 0, '8f1e08ab9a4e5379fb4f10edb28874b3d02cc624570d77b7d1df0c3e0117a617', 1457099450, 1456407157),
+(10, 'krishna', 'Krishna Kumar', 'krishna.vwt@gmail.com', '8854b47fc05990266cc6df7f69d1adeb', 1, 0, 10, 0, 0, 0, 'hkwfl5LMUh98qTZ9Ho62ZqVr6aeNlNeqtnE3yAfQFAW58kxSnLuVBZTiEDSr23L4', 1, 1458153000),
+(3, 'krishna2', '', 'vantage1.krishna@gmail.com', '243bd1ce0387f18005abfc43b001646a', 1, 0, 25, 1, 0, 0, 'f080d81320a1fe2f55f7cc0756803d30abc88ccff2813694bcd299104093138a', 1456411359, 1456411226);
 
 -- --------------------------------------------------------
 
@@ -682,6 +682,87 @@ INSERT INTO `ret_files` (`ID`, `user_id`, `title`, `filename`, `filecolumns`, `k
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `ret_group`
+--
+
+CREATE TABLE IF NOT EXISTS `ret_group` (
+  `group_id` int(11) NOT NULL AUTO_INCREMENT,
+  `group_owner_id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `add_date` datetime NOT NULL,
+  PRIMARY KEY (`group_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `ret_group`
+--
+
+INSERT INTO `ret_group` (`group_id`, `group_owner_id`, `name`, `add_date`) VALUES
+(1, 11, 'xyx', '2016-03-23 18:27:45'),
+(2, 11, 'group 2', '2016-03-23 18:29:42');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ret_group_users`
+--
+
+CREATE TABLE IF NOT EXISTS `ret_group_users` (
+  `group_id` int(11) NOT NULL,
+  `group_owner_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ret_invited_users`
+--
+
+CREATE TABLE IF NOT EXISTS `ret_invited_users` (
+  `invited_id` int(11) NOT NULL AUTO_INCREMENT,
+  `role` varchar(15) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `invited_by` int(11) NOT NULL,
+  `invited_rand_log` varchar(50) NOT NULL,
+  `invited_date` datetime NOT NULL,
+  PRIMARY KEY (`invited_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `ret_invited_users`
+--
+
+INSERT INTO `ret_invited_users` (`invited_id`, `role`, `email`, `invited_by`, `invited_rand_log`, `invited_date`) VALUES
+(2, 'user', 'krishna@vwt.gmail.com', 11, 'FCoLn-XbupS-MTE=', '2016-03-22 17:23:28');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ret_notifications`
+--
+
+CREATE TABLE IF NOT EXISTS `ret_notifications` (
+  `notification_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `subject` varchar(255) NOT NULL,
+  `msg` text NOT NULL,
+  `notification_date` datetime NOT NULL,
+  PRIMARY KEY (`notification_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `ret_notifications`
+--
+
+INSERT INTO `ret_notifications` (`notification_id`, `user_id`, `subject`, `msg`, `notification_date`) VALUES
+(1, 34, 'Welcome to  signup on Sigmaways', '<p>Dear Krishna,<br />You&#39;ve successfully signed up your account with us.<br /><br />Thanks,<br />Sigmaways</p>', '2016-03-17 15:57:38'),
+(3, 35, 'Welcome to  signup on Sigmaways', '<p>Dear Krishna,<br />You&#39;ve successfully signed up your account with us.<br /><br />Thanks,<br />Sigmaways</p>', '2016-03-17 16:15:37'),
+(4, 11, 'Welcome to  signup on Sigmaways', '<p>Dear Krishna,<br />You&#39;ve successfully signed up your account with us.<br /><br />Thanks,<br />Sigmaways</p>', '2016-03-17 16:15:37');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `ret_templates`
 --
 
@@ -693,15 +774,15 @@ CREATE TABLE IF NOT EXISTS `ret_templates` (
   `email_subject` varchar(255) NOT NULL,
   `email_body_text` text NOT NULL,
   PRIMARY KEY (`template_auto_incr_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
 
 --
 -- Dumping data for table `ret_templates`
 --
 
 INSERT INTO `ret_templates` (`template_auto_incr_id`, `template_id`, `ID`, `email_from`, `email_subject`, `email_body_text`) VALUES
-(19, 1, 11, '{{from_email}}', 'Welcome to {{from_subject}}', '<p>Dear {{customer_name}},<br />You&#39;ve successfully signed up your account with us.<br /><br />Thanks,<br />{{company_name}}</p>'),
 (9, 9, 11, '{{from_email}}', 'Billing Date Changed', '<p>Dear {{customer_name}},<br /><br />Your subscription account billing date {{change_billing_date}} changed.<br /><br />Thanks,<br />{{company_name}}</p>'),
+(20, 1, 11, '{{from_email}}', 'Welcome to {{from_subject}}', '<p>Dear {{customer_name}},<br />You&#39;ve successfully signed up your account with us.<br /><br />Thanks,<br />{{company_name}}</p>'),
 (18, 8, 11, '{{from_email}}', 'Plan Changed Notice: Your subscription to {{purchase_plan}} is updated now', '<p>Dear {{customer_name}},</p><p>Your subscription to {{purchase_plan}} is update now.</p><p>Thanks,&lt;br/&gt;{{company_name}}</p>');
 
 -- --------------------------------------------------------
@@ -847,7 +928,7 @@ CREATE TABLE IF NOT EXISTS `ret_users` (
   `activationkey` varchar(200) NOT NULL,
   `upload_limit` int(10) DEFAULT '1000000',
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=32 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=36 ;
 
 --
 -- Dumping data for table `ret_users`
@@ -856,7 +937,37 @@ CREATE TABLE IF NOT EXISTS `ret_users` (
 INSERT INTO `ret_users` (`ID`, `parent_id`, `user_pass`, `user_email`, `user_type`, `company`, `fname`, `phoneno`, `countrycode`, `mobileno`, `verification_code`, `lname`, `tokenid`, `keyid`, `cdate`, `udate`, `active`, `activationkey`, `upload_limit`) VALUES
 (6, 0, '705672dadab30d5b9c5527bf8e7542a6f15e64e4', 'rinku.vantage2@gmail.com', 'supadmin', 'Vantage webtech', 'Rinku', '5765756757', NULL, NULL, NULL, 'Kamboj', '24119a41d0e88eddffe27c71192d0dfc', 'd4f622f8134cb3944f494b6f9fc88b5a', '2015-12-31 15:32:11', '2016-01-18 05:43:29', 1, '20576f46fd5d363c88d2241b2bba1c2deee04b4b', 1000000),
 (11, 0, 'e7a4659b7fbef6efbcc97bc4ed16b16bc78d6196', 'rinku.vantage@gmail.com', 'supadmin', 'gdfg', 'gdf', '765757645645', NULL, NULL, NULL, 'hgj', 'ec1faa2dd4d2cc2ffc0429a8ba73883a', '93f6c207c2ecaf7ed16c0006b43a80c8', '2016-01-11 06:44:16', '2016-02-08 17:30:28', 1, 'f5410089877339b350c332c3e19bc1797ee459c8', 1000000),
-(31, 11, '63e334ec7d0ba6948fa2353cf7df1f258ff50039', 'vantage.krishna@gmail.com', 'user', 'Vantagewebtech', 'Krishna', '1729878997', NULL, NULL, NULL, 'Kumar', '57af3e5c60d5af2fe893f3ca0c54a40a', '159681fba7a402bfa65b6e388712276e', '2016-02-29 18:44:56', '2016-02-29 18:44:56', 0, 'ea0626f84de425e8562d1fcccaadfe00ea24d7a3', 1000000);
+(35, 11, '47332de3075da27d7f607a5ea73c8c3d2ffa35bc', 'krishna.vwt@gmail.com', 'user', 'Vantage Webtech', 'Krishna', '097708978979', NULL, NULL, NULL, 'Kumar', '055b0c82f1ee986ace6f8bf1c34e0db8', 'a17da65c03349f8b953b02d692ac2914', '2016-03-17 16:15:37', '2016-03-22 15:39:51', 1, 'cbc027edaa58c7a94a0ed0b7025d597be34dad29', 1000000);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ret_user_notifications_settings`
+--
+
+CREATE TABLE IF NOT EXISTS `ret_user_notifications_settings` (
+  `notification_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `notify_me_when_customer` tinyint(4) NOT NULL,
+  `notify_emails` varchar(255) NOT NULL,
+  `email_me_when_register` tinyint(4) NOT NULL,
+  `email_customer_when_register` tinyint(4) NOT NULL,
+  `notify_payment_success` tinyint(4) NOT NULL,
+  `notify_payment_fail` tinyint(4) NOT NULL,
+  `notify_refund_success` tinyint(4) NOT NULL,
+  `notify_when_trial_end` tinyint(4) NOT NULL,
+  `notify_account_renew` tinyint(4) NOT NULL,
+  `notify_plan_change` tinyint(4) NOT NULL,
+  `notify_billing_date_change` tinyint(4) NOT NULL,
+  PRIMARY KEY (`notification_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `ret_user_notifications_settings`
+--
+
+INSERT INTO `ret_user_notifications_settings` (`notification_id`, `user_id`, `notify_me_when_customer`, `notify_emails`, `email_me_when_register`, `email_customer_when_register`, `notify_payment_success`, `notify_payment_fail`, `notify_refund_success`, `notify_when_trial_end`, `notify_account_renew`, `notify_plan_change`, `notify_billing_date_change`) VALUES
+(2, 11, 1, '', 1, 1, 1, 0, 0, 0, 1, 0, 0);
 
 -- --------------------------------------------------------
 
