@@ -39,10 +39,10 @@ if(isset($_POST['sendmsg']))
 	{
 		array_push($errors,'Please enter message.');
 	}
-	if($_SESSION['captcha']['code']!=$_POST['captchacode'])
+	/*if($_SESSION['captcha']['code']!=$_POST['captchacode'])
 	{
 		array_push($errors,'Captcha did not match.');
-	}
+	}*/
 	if(empty($errors))
 	{	
 		$to  = 	$owner_email;
@@ -120,6 +120,7 @@ if(isset($_POST['sendmsg']))
                 </div>
 				</div>
               </li>
+              <?php /* ?>
 			  <li class="gfield gfield_contains_required field_sublabel_below field_description_below">
 			  <img src="<?php require_once('capcha/captchaimage.php'); ?>" class="captchaimg" alt="Catcha" /><a href="javascript:;" class="reloadimg"><img src="img/reload_icon.gif" alt="reload" /></a>
 			  </li>
@@ -129,6 +130,8 @@ if(isset($_POST['sendmsg']))
                   <input name="captchacode" id="captchacode" type="text" value="" class="medium required" tabindex="6">
                 </div>
               </li>
+              
+              <?php */ ?>
             </ul>
           </div>
           <div class="gform_footer left_label">
