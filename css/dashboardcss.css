@@ -11,6 +11,24 @@ body {
 div#wrapper {
     min-height: 400px !important;
 }
+.analyticchartsection.analyticbox {
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+.analytics_ul li {
+    WIDTH: 50%;
+    FLOAT: LEFT;
+    BOX-SIZING: BORDER-BOX;
+    list-style: none;
+    min-height: 300px;
+    
+}
+.analytics_ul li h1{font-size: 15px; margin:0px;}
+
+ul.analytics_ul {
+    FLOAT: LEFT;
+    WIDTH: 100%;
+}
 
 @media screen and (-webkit-min-device-pixel-ratio:0) { 
  .admindashboard .sr-only{ position:inherit !important;}
