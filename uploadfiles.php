@@ -140,12 +140,13 @@ if(isset($_FILES['upfile']))
 	<textarea class="col-md-12 col-sm-11 required" name="colTxt"></textarea>
 	<div class="col-md-12  showeeror"></div>
 	<div class="col-md-12">
-		<div class="col-md-4"><label><input type="radio" value="Churn" name="srv" checked="checked" /> Churn</label></div>
+		<div class="col-md-6"><label><input type="radio" value="Churn" name="srv" checked="checked" /> Churn</label></div>
 		<div class="col-md-4"><label><input type="radio" value="Loyalty" name="srv" /> Loyalty</label></div>		
 	</div>
+    <p class="col-md-12">&nbsp;</p>
     <div class="col-md-12">		
 		<div class="col-md-6"><label><input type="radio" value="clv" name="srv"/> Customer Lifetime Value</label></div>
-		<div class="col-md-5"><label><input type="radio" value="coh" name="srv" /> Cohort Analysis</label></div>
+		<div class="col-md-5"><label><input type="radio" value="coh" name="srv" /> Cohort</label></div>
 	</div>
 	<div class="col-md-12 col-sm-12 submitbox">
 	<input class="upload_submit btn btn-lg btn-primary btn-block" type="submit" value="Submit">
