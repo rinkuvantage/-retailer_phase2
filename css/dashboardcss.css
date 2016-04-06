@@ -8,6 +8,10 @@ body {
     line-height: 1.42857;
 }
 
+div#wrapper {
+    min-height: 400px !important;
+}
+
 @media screen and (-webkit-min-device-pixel-ratio:0) { 
  .admindashboard .sr-only{ position:inherit !important;}
  span.glyphicon.headericonbox{ position:inherit !important;}

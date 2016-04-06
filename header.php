@@ -87,21 +87,23 @@ if(count($currentpagesss)>1){$currentpage=$currentpagesss[0];}
   <div class="top-titlebar">
     <div class="container">
 		<?php /*?><?php if($currentpage=='uploadfiles.php'){ ?><h1><i class="fa fa-dashboard"></i> Dashboard</h1><?php } ?><?php */?>
-		<?php if($currentpage=='profile.php'){ ?><i class="fa fa-fw fa-user"></i> Profile<?php } ?>
+		<?php if($currentpage=='profile.php'){ ?><h1><i class="fa fa-fw fa-user"></i> Profile</h1><?php } ?>
 		<?php if($currentpage=='notifications.php'){ ?><h1><i class="fa fa-bell"></i> Notification</h1><?php } ?>
 		<?php if($currentpage=='edit-notifications.php'){ ?><h1><i class="fa fa-bell"></i> Edit Preference</h1><?php } ?>
 		<?php if($currentpage=='uploadfiles.php'){ ?><h1><i class="fa fa-upload"></i> Upload Files</h1><?php } ?>
 		<?php if($currentpage=='viewfiles.php'){ ?><h1><i class="fa fa-eye"></i> View Files</h1><?php } ?>
 		<?php if($currentpage=='support.php'){ ?><h1><i class="fa fa-fw fa-user"></i> Support</h1><?php } ?>
 		<?php if($currentpage=='analytics.php'){ ?><h1><i class="fa fa-fw fa-bar-chart"></i> Analytics</h1><?php } ?>
+		<?php if($currentpage=='email-templates.php'){ ?><h1><i class="fa fa-envelope"></i> Email Templates</h1><?php } ?>
 		<?php if($currentpage=='manageusers.php'){ ?><h1><i class="fa fa-wrench"></i> Manage Users</h1><?php } ?>
 		<?php if($currentpage=='edit-user.php'){ ?><h1><i class="fa fa-fw fa-user"></i> Edit Users</h1><?php } ?>
+		<?php if($currentpage=='manage-groups.php'){ ?><h1><i class="fa fa-fw fa-user"></i> Manage User Groups</h1><?php } ?>
     </div>
   </div>
   <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav side-nav dashboardsidebar">
-    <?php if($currentpage != 'manage-groups.php'){ ?>
+    <?php //if($currentpage != 'manage-groups.php'){ ?>
     
       <li<?php if($currentpage=='profile.php'){ ?> class="active"<?php } ?>> <a href="profile.php"> Profile</a> </li>      
       <li<?php if($currentpage=='notifications.php' || $currentpage=='edit-notifications.php'){ ?> class="active"<?php } ?>> <a href="notifications.php"> Notification</a> </li>
@@ -114,13 +116,13 @@ if(count($currentpagesss)>1){$currentpage=$currentpagesss[0];}
       <li<?php if($currentpage=='manageusers.php' || $currentpage=='edit-user.php'){ ?> class="active"<?php } ?>> <a href="manageusers.php">Manage Users</a> </li>  
       
       <?php } ?>
-	 <?php }else{ 
+	<?php /*?> <?php //}else{ 
 	 $groups =	$groupuser->userGroups($uid);
 	 
-	 
+	 if($currentpage=='manage-groups.php'){
 	 ?>     
-     <li<?php if($currentpage=='manage-groups.php'){ ?> class="active"<?php } ?>> <a href="manage-groups.php"> Manage Groups</a> </li>
-     	<ul class="groups_child">
+     <li class="active"> <a href="manage-groups.php"> Manage Groups</a> </li>
+     <?php } ?>	<ul class="groups_child">
         	<li><a data-toggle="modal" data-target="#createGroups">+ Create Groups</a></li>
             <li><a href="manage-groups.php?vaction=active">All Active Users</a></li>
             <li><a href="manage-groups.php?vaction=unassign">Ungrouped Users</a></li>
@@ -129,7 +131,7 @@ if(count($currentpagesss)>1){$currentpage=$currentpagesss[0];}
             <li><a href="manage-groups.php?vaction=assign_grp&gip=<?php echo $groupname['group_id']; ?>"><?php echo $groupname['name']; ?></a></li>
             <?php } ?>
         </ul>
-     <?php } ?>
+     <?php //} ?><?php */ ?>
     </ul>
 	
   </div>

@@ -13,27 +13,62 @@ if(isset($_GET['vaction']) && trim($_GET['vaction']) == "unassign")
 		$users = $groupuser->getactiveUser($uid);
 }
 
+$all_created_groups = 	$groupuser->userGroups($uid);
+
+
+$heading_title = "Active";
+
+if(isset($_GET['vaction']) && $_GET['vaction'] == "unassign")
+{
+	$heading_title = "Ungrouped";	
+}
+
+if(isset($_GET['vaction']) && $_GET['vaction'] == "assign_grp")
+{
+	$group_id = (int)$_GET['gip'];
+	
+	$group_name = $groupuser->getGroup($group_id);		
+	$heading_title = ucfirst($group_name['name']);
+	
+	$users = $groupuser->getalluserGroups($group_id);
+		
+}
 ?>
         <div id="page-wrapper" class="arrangeheight">
             <div class="container-fluid">
-                <div class="row">                
+                <div class="row">
+				<div class="main_div">
+				<ul class="nav nav-tabs">
+					<li><a data-toggle="modal" data-target="#createGroups">+ Create Groups</a></li>
+            <li <?php if($heading_title=='Active'){ ?> class="active"<?php } ?>><a href="manage-groups.php?vaction=active">All Active Users</a></li>
+            <li <?php if($heading_title=='Ungrouped'){ ?> class="active"<?php } ?>><a href="manage-groups.php?vaction=unassign">Ungrouped Users</a></li>
+            </ul>
                 <div class="user_div">
     	<div class="manage_top">
-        	<h3>All active users 6</h3>
+        	<h3>All <?php echo $heading_title; ?> Users</h3>
             <ul>
             <!--<li class="usr_select"><input type="checkbox">No selected users</li>-->
            <li>
-           <select>
+           <select name="user_role">
 				<option value="">Change Role</option>
 				<option value="admin">Admin</option>				
 				<option value="user">User</option>				
 				</select></li>
                <li>
-           <select>
+           <select name="group_list">
 				<option value="">Change group</option>
-				
+                <?php foreach($all_created_groups as $all_created_group){?>
+                <option value="<?php echo $all_created_group['group_id']; ?>"><?php echo $all_created_group['name']; ?></option>
+                <?php } ?>				
 				</select></li>
-                <li>Deactivate</li>
+				<li <?php if($_GET['vaction'] == "assign_grp"){ ?> class="active"<?php } ?> >
+			<select id="gip" >
+			<?php $groups =	$groupuser->userGroups($uid); 
+			foreach($groups as $groupname){ ?>
+            <option <?php if($groupname['group_id']==$group_id){ echo "selected='selected'" ;} ?> value="<?php echo $groupname['group_id']; ?>"><?php echo $groupname['name']; ?></option>
+			<?php } ?>
+			</select></li>
+                <!--<li>Deactivate</li>-->
             </ul>
         </div>
         	<div class="table-responsive deactivated_usr">
@@ -47,19 +82,26 @@ if(isset($_GET['vaction']) && trim($_GET['vaction']) == "unassign")
               </tr>
               </thead>
               <tbody>
-              <?php foreach($users as $user){ ?>
+              <?php if(count($users)):
+			  	foreach($users as $user){ ?>
               <tr>
-                <td><input type="checkbox" name="user_id[]" ></td>
+                <td><input type="checkbox" name="user_id[]" value="<?php echo $user['ID']; ?>" ></td>
                 <td><?php echo ucfirst($user['name']);?></td>
                 <td><?php echo $user['user_email'];?></td>
                 <td><?php echo ucfirst($user['user_type']);?></td>
               </tr>
-              <?php } ?>              
+              <?php } 
+			  else: 
+			  
+			  echo '<tr><td colspan="4">Sorry! no result found.</td></tr>';
+			   endif;
+			  ?>              
          	 </tbody>
        </table>
             </div>
 	</div>
-            </div>
+			</div>
+			</div>
          </div>
     </div>    
  </div>   
@@ -67,7 +109,8 @@ if(isset($_GET['vaction']) && trim($_GET['vaction']) == "unassign")
 <div class="modal  fade" id="createGroups" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">   
+            <div class="modal-header"> 
+			<button data-dismiss="modal" class="close" type="button">x</button>  
             <h4>Create Group</h4> 
             <div class="row">
             <label class="col-lg-4">Group Name</label>
@@ -121,140 +164,93 @@ $(document).ready(function(e) {
 		});
 			
 	});	
-	
-	
-	$(".resendInvitation").click(function(){	
 		
-		var currt_id = $(this).attr("id");
+	$("select[name='user_role']").live("change", function(){		
 		
-		var postdata = {resent_id : currt_id};
+		var selected_val = $("select[name='user_role']").val();
 		
-		jQuery.ajax({
-		url: './invite_user.php?action=resend',
-		type: 'post',
-		data: postdata,
-		dataType: 'json',
-		success: function(json) {				
-									
-					if (json['success']) {								
-							$("#page-wrapper").before(json['success']);											
-					}
-							
-		   }	
+		var selected_checkbox = $("input[name='user_id[]']:checked").val()
+		
+		var user_values = new Array();
+		
+		$.each($("input[name='user_id[]']:checked"), function() {
+			  user_values.push($(this).val());			  
 		});
-			
-	});	
-	
-	
-	$(".cancelInvitation").click(function(){	
 		
-		var currt_id = $(this).attr("id");
 		
-		var postdata = {invite_id : currt_id};
 		
-		jQuery.ajax({
-		url: './invite_user.php?action=cancelinvitation',
-		type: 'post',
-		data: postdata,
-		dataType: 'json',
-		success: function(json) {				
+		if(user_values.length > 0)
+		{
+		
+					jQuery.ajax({
+					url: './invite_user.php?action=updaterole',
+					type: 'post',
+					data: { "role" : selected_val, "user" : user_values},
+					dataType: 'json',
+					success: function(json) {				
+												
+								if (json['success']) {							
+									$(".deactivated_usr tbody").html('');
+									$(".deactivated_usr tbody").html(json['success']['html']);
 									
-					if (json['success']) {
-							
-							$("#invitee_list").html('');
-							$("#invitee_list").html(json['success']);										
-					}
-							
-		   }	
-		});
-			
-	});	
-	
-	
-	
-	$(".deact").click(function(){	
-		
-		var currt_id = $(this).attr("id");
-		
-		var postdata = {deact_id : currt_id};
-		
-		jQuery.ajax({
-		url: './invite_user.php?action=deactivate',
-		type: 'post',
-		data: postdata,
-		dataType: 'json',
-		success: function(json) {				
-									
-					if (json['success']) {
-							
-							$("#activated_list").html('');
-							$("#deactivated_list").html('');							
-							$("#activated_list").html(json['success']['activated_list']);
-							$("#deactivated_list").html(json['success']['deactivated_list']);										
-					}
-							
-		   }	
-		});
+									$("#page-wrapper").before(json['success']['message']);	
+								}
+										
+					   }	
+					});
+		}else{
+			   alert("Please select a user.");
+				
+		}		
 			
 	});
 	
-	$(".acti").click(function(){	
+	$("#gip").live("change", function(){		
 		
-		var currt_id = $(this).attr("id");
+		var selected_val = $("#gip").val();
 		
-		var postdata = {act_id : currt_id};
+		//alert(selected_val);
 		
-		jQuery.ajax({
-		url: './invite_user.php?action=activate',
-		type: 'post',
-		data: postdata,
-		dataType: 'json',
-		success: function(json) {				
-									
-					if (json['success']) {
-							
-							$("#activated_list").html('');
-							$("#deactivated_list").html('');							
-							$("#activated_list").html(json['success']['activated_list']);
-							$("#deactivated_list").html(json['success']['deactivated_list']);										
-					}
-							
-		   }	
+		window.location = location.pathname+'?vaction=assign_grp&gip='+selected_val;
+		  
 		});
-			
-	});	
-	
-	
-	$(".urole").on("change", function(){
+	$("select[name='group_list']").live("change", function(){		
 		
-		var selected_val = $(".urole").val();
+		var selected_val = $("select[name='group_list']").val();
 		
-		jQuery.ajax({
-		url: './invite_user.php?action=changerole',
-		type: 'post',
-		data: { "changerole" : selected_val},
-		dataType: 'json',
-		success: function(json) {				
-									
-					if (json['success']) {							
-							$('#' + json['success']['id']).html('');
-							$('#' + json['success']['id']).html(json['success']['optionval']);	
-							$("#page-wrapper").before(json['success']['message']);	
-							
-														
-							$(".success").delay(5000).fadeOut('slow');
-							
-						/*	
-						if(json['success']['redirect'])
-						{
-							window.location = "./uploadfiles.php";
-						}	*/								
-					}
-							
-		   }	
+		var selected_checkbox = $("input[name='user_id[]']:checked").val()
+		
+		var user_values = new Array();
+		
+		$.each($("input[name='user_id[]']:checked"), function() {
+			  user_values.push($(this).val());			  
 		});
+		
+		
+		
+		if(user_values.length > 0)
+		{
+		
+					jQuery.ajax({
+					url: './invite_user.php?action=updategroup',
+					type: 'post',
+					data: { "group" : selected_val, "user" : user_values},
+					dataType: 'json',
+					success: function(json) {				
+												
+								if (json['success']) {								
+									$("#page-wrapper").before(json['success']['message']);	
+								}
+										
+					   }	
+					});
+		}else{
+			   alert("Please select a user.");
+				
+		}		
 			
 	});
+	
 });
 </script>
 <?php require_once('footer.php'); ?>

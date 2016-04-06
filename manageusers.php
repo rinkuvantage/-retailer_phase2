@@ -55,7 +55,7 @@ $deactive_user_lists = $user->UserList("$deactive_user_list_type order by ID des
                   <li><a data-toggle="tab" href="#deactive_user">Deactivated</a></li>
                   <li><a data-toggle="tab" href="#invited_user">Invited</a></li>
                 </ul>
-        <form action="" method="post">           
+        
         <div class="tab-content">   
                                               
          <div id="active_user" class="tab-pane fade in active">
@@ -108,12 +108,12 @@ $deactive_user_lists = $user->UserList("$deactive_user_list_type order by ID des
 			<p class="listCaption">The project roster allows you to administer all project members.</p>
 			
 			</div>
-				<div class="right_div">
+				<!--<div class="right_div">
 				<ul>
 				<li><a class="manage" href="./manage-groups.php">Manage user groups</a></li>
 				<li class="icon-add"><button data-toggle="modal" data-target="#inviteuser"><img src="images/index.png">invite user</button></li>
 				</ul>
-				</div>
+				</div>-->
 		</div>
 			<div class="last_div" id="deactivated_list">	
             
@@ -125,10 +125,10 @@ $deactive_user_lists = $user->UserList("$deactive_user_list_type order by ID des
 						<ul>
 						<li><a href="#"><?php echo $deactive_user_list['fname'] ." ". $deactive_user_list['lname'];if($deactive_user_list['ID'] == $uid){ echo "(You)"; } ?></a></li>
 						<li><?php echo $deactive_user_list['user_email']; ?></li>
-						<li><select name="user_role" class="urole" id="u<?php echo $$deactive_user_list['ID']; ?>">
+						<li><select name="user_role" class="urole" id="u<?php echo $deactive_user_list['ID']; ?>">
 							  <option value="">Change Role</option>  
 							  <option value="u<?php echo $deactive_user_list['ID']; ?>-user-<?php echo $deactive_user_list['ID']; ?>"<?php if($deactive_user_list['user_type'] =='user'){ echo 'selected'; } ?>>User</option>
-							   <option value="u<?php echo $deactive_user_list['ID']; ?>-admin<?php echo $deactive_user_list['ID']; ?>"<?php if($deactive_user_list['user_type'] =='admin'){ echo 'selected'; } ?>>Admin</option>
+							   <option value="u<?php echo $deactive_user_list['ID']; ?>-admin-<?php echo $deactive_user_list['ID']; ?>"<?php if($deactive_user_list['user_type'] =='admin'){ echo 'selected'; } ?>>Admin</option>
 							</select><a class="deactivelink acti" id="act_<?php echo $deactive_user_list['ID']; ?>">or Activate</a></li>
 						</ul>
 					</div>
@@ -144,12 +144,12 @@ $deactive_user_lists = $user->UserList("$deactive_user_list_type order by ID des
                     <div class="user_div ">            
                     <div class="middle_div">
                         <div class="left_div"><p class="listCaption">The project roster allows you to administer all project members.</p></div>
-                         <div class="right_div">
+                         <!--<div class="right_div">
                             <ul>
                             <li><a class="manage" href="./manage-groups.php">Manage user groups</a></li>
                             <li class="icon-add"><button data-toggle="modal" data-target="#inviteuser"><img src="images/index.png">invite user</button></li>
                             </ul>
-                          </div>
+                          </div>-->
                         </div>
                  <div class="last_div" id="invitee_list">                 
                  	<?php if(count($invities)): ?>	
@@ -170,7 +170,7 @@ $deactive_user_lists = $user->UserList("$deactive_user_list_type order by ID des
                 </div>              
            </div>     
          </div>      
-        </form>                    
+              
                 </div>
             </div>
          </div>
@@ -180,7 +180,8 @@ $deactive_user_lists = $user->UserList("$deactive_user_list_type order by ID des
 <div class="modal  fade" id="inviteuser" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">   
+            <div class="modal-header"> 
+			<button data-dismiss="modal" class="close" type="button">x</button>  
             <h4>Invite User</h4> 
             <div class="row">
             <label class="col-lg-4">Email Address</label>
@@ -199,8 +200,8 @@ $deactive_user_lists = $user->UserList("$deactive_user_list_type order by ID des
             </div>
             
             <div class="row">
-            <label class="col-lg-4">Personel Message</label>
-             <div class="col-lg-8"><textarea name="personel_message"  placeholder="Personel Message" rows="3" cols="40"></textarea></div>
+            <label class="col-lg-4">Personal Message</label>
+             <div class="col-lg-8"><textarea name="personel_message"  placeholder="Personal Message" rows="3" cols="40"></textarea></div>
             </div>
             
             <div class="row">
@@ -211,15 +212,13 @@ $deactive_user_lists = $user->UserList("$deactive_user_list_type order by ID des
 	 </div>
  	</div>
  	</div>
- </div>   
- 
-
+ </div>
 <script type="text/javascript" src="js/jquery.js"></script>    
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(e) {
     
-	$(".invite_user").click(function(){		
+	$(".invite_user").live("click", function(){		
 		jQuery.ajax({
 		url: './invite_user.php?action=inviteuser',
 		type: 'post',
@@ -251,7 +250,7 @@ $(document).ready(function(e) {
 	});	
 	
 	
-	$(".resendInvitation").click(function(){	
+	$(".resendInvitation").live("click", function(){	
 		
 		var currt_id = $(this).attr("id");
 		
@@ -274,7 +273,7 @@ $(document).ready(function(e) {
 	});	
 	
 	
-	$(".cancelInvitation").click(function(){	
+	$(".cancelInvitation").live("click", function(){	
 		
 		var currt_id = $(this).attr("id");
 		
@@ -298,9 +297,7 @@ $(document).ready(function(e) {
 			
 	});	
 	
-	
-	
-	$(".deact").click(function(){	
+$(".deact").live("click", function(){	
 		
 		var currt_id = $(this).attr("id");
 		
@@ -326,7 +323,7 @@ $(document).ready(function(e) {
 			
 	});
 	
-	$(".acti").click(function(){	
+	$(".acti").live("click", function(){	
 		
 		var currt_id = $(this).attr("id");
 		
@@ -353,7 +350,7 @@ $(document).ready(function(e) {
 	});	
 	
 	
-	$(".urole").on("change", function(){
+	$(".urole").live("change", function(){
 		
 		var selected_val = $(".urole").val();
 		

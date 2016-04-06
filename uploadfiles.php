@@ -87,6 +87,14 @@ if(isset($_FILES['upfile']))
 								else if($_POST['srv']=='Loyalty')
 								{
 									$_SESSION['loyalty']=$result;
+								}								
+								else if($_POST['srv']=='clv')
+								{
+									$_SESSION['clv']=$result;
+								}								
+								else if($_POST['srv']=='coh')
+								{
+									$_SESSION['coh']=$result;
 								}
 								echo"<script type='text/javascript'>window.location='analytics.php';</script>";
 								exit();
@@ -127,20 +135,24 @@ if(isset($_FILES['upfile']))
     </div>
 	</div>
 	<div class="uploadfile_textarebox col-md-12">
-	<div class="col-md-6 col-sm-6 leftuploadcnt">
+	<div class="col-md-8 col-sm-8 leftuploadcnt">
 	<h1>Column Headers  *</h1>
 	<textarea class="col-md-12 col-sm-11 required" name="colTxt"></textarea>
 	<div class="col-md-12  showeeror"></div>
 	<div class="col-md-12">
 		<div class="col-md-4"><label><input type="radio" value="Churn" name="srv" checked="checked" /> Churn</label></div>
-		<div class="col-md-4"><label><input type="radio" value="Loyalty" name="srv" /> Loyalty</label></div>
+		<div class="col-md-4"><label><input type="radio" value="Loyalty" name="srv" /> Loyalty</label></div>		
+	</div>
+    <div class="col-md-12">		
+		<div class="col-md-6"><label><input type="radio" value="clv" name="srv"/> Customer Lifetime Value</label></div>
+		<div class="col-md-5"><label><input type="radio" value="coh" name="srv" /> Cohort Analysis</label></div>
 	</div>
 	<div class="col-md-12 col-sm-12 submitbox">
 	<input class="upload_submit btn btn-lg btn-primary btn-block" type="submit" value="Submit">
     <div class="cancelbox">or <a href="javascript:;" onclick="upfiles.reset()">Cancel</a></div>
 	</div>
 	</div>
-	<div class="col-md-6 col-sm-4 rightuploadcnt">
+	<div class="col-md-4 col-sm-4 rightuploadcnt">
 
    <h2><b>What are Column Headers?</b></h2>
 

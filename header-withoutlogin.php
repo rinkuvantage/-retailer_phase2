@@ -36,9 +36,13 @@
         <?php if($login_active){ ?>
         <a class="contact dashboard" href="uploadfiles.php">
         <button class="btn btn-success btn-lg pull-right" type="submit"> <i class="fa fa-dashboard"></i> Dashboard</button>
-        </a> <a class="contact" href="contactus.php">
+        </a> 
+      <?php if($currentpage != 'contactus.php'){ ?>  
+        <a class="contact" href="contactus.php">
         <button class="btn btn-success btn-lg pull-right" type="submit"> <span class="glyphicon glyphicon-comment headericonbox"></span> Contact</button>
         </a>
+        <?php } ?>
+        
        <!-- <div class="phonno pull-right"><span class="glyphicon glyphicon-phone-alt headericonbox"></span> 855-867-4473</div>-->
         <?php }else{ ?>
         <div class="dropdown">
@@ -55,14 +59,17 @@
 				<button type="button" id="btnLogin" class="btn">Login</button>
 			</form>
               <a href="register.php" title="Fast and free sign up!" id="btnNewUser"  class="collapsed anchortext">New User? Sign-up</a>
-            <button type="button" class="btn btn-info btn-lg anchortext forgotpwdlink" data-toggle="modal" data-target="#myModal">Forgot username or password?</button>
+            <button type="button" class="btn btn-info btn-lg anchortext forgotpwdlink" data-toggle="modal" data-target="#myModal">Forgot password?</button>
             <a class="anchortext"href="contactus.php"><small>Need help? Contact us</small></a>
             <!-- Modal -->
           </div>
         </div>
+        
+         <?php if($currentpage != 'contactus.php'){ ?>  
         <a class="contact pull-right" href="contactus.php">
         <button class="btn btn-success btn-lg pull-right" type="submit"><span class="glyphicon glyphicon-comment headericonbox"></span> Contact</button>
         </a>
+        <?php } ?>
        <?php if($currentpage!='index.php' && $currentpage!='contactus.php' && $currentpage!='login.php' && $currentpage!='register.php' && $currentpage!='Churn-analytics.php' && $currentpage!='Loyalty-status.php' && $currentpage!='termsofservices.php' && $currentpage!='privacy-policy.php'){ ?><div class="phonno pull-right"><span class="glyphicon glyphicon-phone-alt headericonbox"></span> 855-867-4473</div><?php } ?>
         <?php } ?>
 		
